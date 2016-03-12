@@ -2,4 +2,4 @@
 
 echo "<h1>User Registration</h1>";
 
-require("forms/registration.form.php");
+require("forms/userRegistration.form.php");
