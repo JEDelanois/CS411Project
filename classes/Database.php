@@ -1,5 +1,5 @@
 <?php 
-require("..dbconfig.php");
+require '../dbconfig.php';
 class DatabaseConnection {
 	private $_db = null;
 	private $_dbhostname;
@@ -8,12 +8,12 @@ class DatabaseConnection {
 	private $_dbpassword;
 
 	public function __construct(){
-		$this->_dbhostname = $_DatabaseHostName;
-		$this->_dbname = $_DatabaseUsername;
-		$this->_dbusername = $_DatabaseUsername;
-		$this->_dbpassword = $_DatabasePassword;
+		$this->_dbhostname = DB_HOST;
+		$this->_dbname = DB_DATABASE;
+		$this->_dbusername = DB_USER;
+		$this->_dbpassword = DB_PASSWORD;
 		try {
-			$this->_db = new PDO("mysql:host=$this->_hostName;dbname=$this->_dbName", $this->_dbUser, $this->_dbPass);
+			$this->_db = new PDO("mysql:host=$this->_dbhostname;dbname=$this->_dbname", $this->_dbusername, $this->_dbpassword);
 		}
 		catch(PDOException $e) {
 		    echo $e->getMessage();
@@ -27,7 +27,7 @@ class DatabaseConnection {
 
 	public function insertUserIntoTable($userInfoArray){
 		if(is_array($userInfoArray)){
-			$sqlQuery = "INSERT INTO `Users`(`user_first_name`, `user_last_name``user_email`, `user_password`, `user_dob`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :DOB, :role, :user_last_logged_in, :user_registered)"
+			$sqlQuery = "INSERT INTO `Users`(`user_first_name`, `user_last_name``user_email`, `user_password`, `user_dob`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :DOB, :role, :user_last_logged_in, :user_registered)";
 			$STH = $this->_db->prepare($sqlQuery);
 			$currTime = date('Y-m-d H:i:s');
 			$STH->execute(array(
