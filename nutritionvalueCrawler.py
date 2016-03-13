@@ -7,6 +7,19 @@ def InitFile(outfile):
 	outfile.write("\n")
 
 
+
+def GatherPage(url, url_list):
+	source_code = requests.get(url)
+	plain_text = source_code.text
+	#get soup object
+	soup = BeautifulSoup(plain_text,"html.parser")
+	print soup.prettify()
+	for url_table in soup.find_all("td"):
+		print url_table.name
+	
+	
+
+
 #url - full url of specific http://www.nutritionvalue.org/
 #		page you want to crawl
 #file - open file that can be written to
