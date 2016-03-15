@@ -1,0 +1,30 @@
+Food Name:		Protein Fat Carb Sugar
+
+Fat, chicken:		0.00  99.80  0.00  0.00 
+Chicken spread:		18.01  17.56  4.05  0.47 
+Chicken, meatless:		23.64  12.73  3.64  0.00 
+Gravy, dry, chicken:		11.27  9.73  62.09  0
+Chicken, raw, ground:		17.44  8.10  0.04  0.00 
+KFC, Popcorn Chicken:		17.67  21.74  21.18  0.00 
+Frankfurter, chicken:		15.51  16.19  2.74  2.98 
+Chicken, boiled, feet:		19.40  14.60  0.20  0.00 
+Bologna, pork, chicken:		10.31  30.61  4.19  0.00 
+DENNY'S, chicken strips:		19.17  14.50  22.03  0.29 
+WENDY'S, Chicken Nuggets:		16.46  22.55  14.31  0.08 
+Chicken, no broth, canned:		25.30  8.10  0.90  0.00 
+SWANSON, Chicken A La King:		4.70  4.03  4.03  0.67 
+Gravy, chicken, CAMPBELL'S:		0.79  2.73  5.87  0.94 
+Bratwurst, cooked, chicken:		19.44  10.35  0.00  0.00 
+KFC, Crispy Chicken Strips:		20.25  15.42  13.66  0.00 
+Fast foods, chicken tenders:		19.22  13.95  17.25  0.40 
+BURGER KING, Chicken Strips:		18.20  15.25  20.49  0.00 
+Pate, canned, chicken liver:		13.45  13.10  6.55  0.00 
+Bologna, beef, pork, chicken:		11.33  22.73  5.61  0.00 
+McDONALD'S, Chicken McNUGGETS:		15.79  19.81  15.09  0.08 
+Chicken, raw, giblets, capons:		18.28  5.18  1.42  0
+Chicken patty, cooked, frozen:		14.85  19.58  12.84  0.00 
+CHICK-FIL-A, chicken sandwich:		16.28  11.19  20.89  3.64 
+Soup, mix, dry, chicken noodle:		15.42  6.51  62.32  1.90 
+SWANSON, Chicken and Dumplings:		4.45  4.05  9.72  0.81 
+McDONALD'S, McCHICKEN Sandwich:		10.43  13.21  27.97  3.57 
+Chicken, raw, giblets, stewing:		17.89  9.21  2.13  0

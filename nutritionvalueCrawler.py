@@ -7,10 +7,15 @@ def InitFile(outfile):
 	outfile.write("\n")
 
 
-
+#url of one of the A-Z pages on nutrionvalue
+#url_list = list of urls that this gather page will add to
 def GatherPage(url, url_list):
 	source_code = requests.get(url)
 	plain_text = source_code.text
+	
+
+
+	print plain_text
 	#get soup object
 	soup = BeautifulSoup(plain_text,"html.parser")
 	print soup.prettify()
@@ -36,11 +41,22 @@ def CrawlPage(url, outfile):
 
 	source_code = requests.get(url)
 	plain_text = source_code.text
+
+
+	if plain_text == "":
+		print "The website " + url + "has returned a blank html probably due to making too many requests need to change IP address"
+		return False
+
 	#get soup object
 	soup = BeautifulSoup(plain_text,"html.parser")
 
 	#html tag in the soup odc
 	html = soup.html
+	#set default values
+	protein = "0"
+	fat = "0"
+	carb = "0"
+	sugar = "0"
 
 	#every nutrient table
 	for child in html.find_all("table", {'class':"nutrient"}): 
@@ -62,5 +78,7 @@ def CrawlPage(url, outfile):
 
 	
 	outfile.write((soup.h1.text + ":\t\t" + protein +  " " +  fat +  " " + carb +  " " + sugar).encode('utf-8').strip())
+
 	outfile.write("\n")
+	return True
 
