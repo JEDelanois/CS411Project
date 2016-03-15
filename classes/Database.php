@@ -29,7 +29,7 @@ class DatabaseConnection {
 
 	public function insertUserIntoTable($userInfoArray){
 		if(is_array($userInfoArray)){
-			$sqlQuery = "INSERT INTO `Users`(`user_first_name`, `user_last_name`,`user_email`, `user_password`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :role, :user_last_logged_in, :user_registered)";
+			$sqlQuery = "INSERT INTO `Users`(`user_firstname`, `user_lastname`,`user_email`, `user_password`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :role, :user_last_logged_in, :user_registered)";
 			$STH = $this->_db->prepare($sqlQuery);
 			$currTime = date('Y-m-d H:i:s');
 			$STH->execute(array(
