@@ -1,5 +1,5 @@
 <div id="userRegistrationForm">
-	<form method="POST" action="inc/processUser.php">
+	<form method="POST" action="inc/registerUserProcess.php">
 		<ul class='form-style-1'>
 			<li>
 				<label>Full Name <span class="required">*</span></label>

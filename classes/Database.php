@@ -1,5 +1,7 @@
 <?php 
 require '../dbconfig.php';
+// require 'User.php';
+
 class DatabaseConnection {
 	private $_db = null;
 	private $_dbhostname;
@@ -33,26 +35,46 @@ class DatabaseConnection {
 			$STH->execute(array(
                             ':firstName' 	        => $userInfoArray["user_firstName"],
                             ':lastName' 	        => $userInfoArray["user_lastName"],
-                            ':emailAddress'             => $userInfoArray["user_email"],
+                            ':emailAddress'         => $userInfoArray["user_email"],
                             ':password' 	        => $userInfoArray["user_password"],
-                            ':role'			=> $userInfoArray["user_role"],
+                            ':role'					=> $userInfoArray["user_role"],
                             ':user_last_logged_in' 	=> $currTime,
-                            ':user_registered'          => $currTime
+                            ':user_registered'      => $currTime
 			));
 		} 
 	}
 
-	public function insertNewCandidateIntoTable($candidateObj){
-		try {
-			$sqlQuery = "";
-			$currTime = date('Y-m-d H:i:s');
-			$STH = $this->_db->prepare($sqlQuery);
-			$STH->execute(array(
-				
-			));
-		} catch(PDOException $e){
-			echo $e->getMessage();
-			    die();
-		}
+	public function checkEmailExist($email){
+		$sqlQuery = "SELECT user_email FROM Users WHERE user_email = :email";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute([
+			':email'	=>	$email
+			]);
+		$result = $STH->fetch();
+		if(isset($result[0])) return true;
+		return false;
+	}
+
+	public function checkEmailPasswordCombination($email, $password){
+		if(!$this->checkEmailExist($email)) return false;
+		$sqlQuery = "SELECT user_password FROM Users WHERE user_email = :email";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute([
+			':email'	=>	$email
+			]);
+		$result = $STH->fetch();
+		if(password_verify($password, $result[0]))
+			return true;
+		else return false;
+	}
+
+	public function getUserFromEmail($email){
+		$sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_last_logged_in`, `user_registered` FROM `Users` WHERE user_email = :email";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute([
+			':email'	=>	$email
+			]);
+		$STH->setFetchMode(PDO::FETCH_CLASS, "User");
+		return $STH->fetch();
 	}
 }
