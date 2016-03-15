@@ -1,3 +1,4 @@
+<?php require 'user_session.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>

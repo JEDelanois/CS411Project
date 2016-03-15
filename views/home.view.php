@@ -1,1 +1,11 @@
 <a href="register.php">Register</a>
+<a href="login.php">Login</a>
+<br>
+<?php 
+if($currentUser){
+	echo 'Logged in as ' . $currentUser->user_firstname . ' ' . $currentUser->user_lastname . '<br>';
+	echo '<a href="logout.php">Logout</a>';
+} else {
+	echo 'not logged in <br>';
+}
+?>
