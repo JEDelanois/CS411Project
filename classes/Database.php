@@ -27,17 +27,17 @@ class DatabaseConnection {
 
 	public function insertUserIntoTable($userInfoArray){
 		if(is_array($userInfoArray)){
-			$sqlQuery = "INSERT INTO `Users`(`user_first_name`, `user_last_name``user_email`, `user_password`, `user_dob`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :DOB, :role, :user_last_logged_in, :user_registered)";
+			$sqlQuery = "INSERT INTO `Users`(`user_first_name`, `user_last_name`,`user_email`, `user_password`, `user_role`, `user_last_logged_in`, `user_registered`) VALUES (:firstName, :lastName, :emailAddress, :password, :role, :user_last_logged_in, :user_registered)";
 			$STH = $this->_db->prepare($sqlQuery);
 			$currTime = date('Y-m-d H:i:s');
 			$STH->execute(array(
-				':firstName' 	=> $userInfoArray["firstname"],
-				':lastName' 	=> $userInfoArray["lastname"],
-				':emailAddress' => $userInfoArray["emailAddress"],
-				':password' 	=> $userInfoArray["password"],
-				':role'			=> $userInfoArray["role"],
-				':user_last_logged_in' 	=> $currTime,
-				':user_registered' => $currTime
+                            ':firstName' 	        => $userInfoArray["user_firstName"],
+                            ':lastName' 	        => $userInfoArray["user_lastName"],
+                            ':emailAddress'             => $userInfoArray["user_email"],
+                            ':password' 	        => $userInfoArray["user_password"],
+                            ':role'			=> $userInfoArray["user_role"],
+                            ':user_last_logged_in' 	=> $currTime,
+                            ':user_registered'          => $currTime
 			));
 		} 
 	}
