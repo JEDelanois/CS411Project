@@ -77,4 +77,14 @@ class DatabaseConnection {
 		$STH->setFetchMode(PDO::FETCH_CLASS, "User");
 		return $STH->fetch();
 	}
+
+	public function getUsersFromTable(){
+		$sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_last_logged_in`, `user_registered` FROM `Users`";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute([
+			':email'	=>	$email
+			]);
+		$STH->setFetchMode(PDO::FETCH_CLASS, "User");
+		return $STH->fetch();
+	}
 }
