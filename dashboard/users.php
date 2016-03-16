@@ -14,6 +14,12 @@
 
 
 <?php
+
+// if(isset($_GET["user"]))
+// 	echo $_GET["user"];
+// else
+// 	echo 'not found';
+
 $db = new DatabaseConnection();
 $arr = $db->getUsersFromTable();
 
