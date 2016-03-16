@@ -10,7 +10,7 @@ if(isset($_POST)){
 	$password = htmlentities($_POST["user_password"]);
 	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 	$userInfo["user_password"] = $hashedPassword;
-	$userInfo["user_role"] = "user";
+	$userInfo["user_role"] = "administrator";
 
 	$db = new DatabaseConnection();
 
