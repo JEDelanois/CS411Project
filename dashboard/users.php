@@ -16,7 +16,7 @@
 <?php
 $arr=getUsersFromTable();
 
-foreach($arr=>$i)
+foreach($arr as $i)
 {
 echo "<tr>";
 echo "<td>.i->user_id</td>";
@@ -26,6 +26,8 @@ echo "<td>.i->user_lastname</td>";
 echo "<td>.i->user_email</td>";
 echo "<td>.i->user_dob</td>";
 echo "<td>.i->user_last_logged_in</td>";
+echo "<a href="abujaba2.web.engr.illinois.edu/cs411project/forms/editUser.form.php">edit</a>";
+echo "<button type="button">Delete</button>";
 echo "</tr>";
 }
 ?>
