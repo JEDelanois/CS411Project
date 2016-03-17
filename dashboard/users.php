@@ -36,7 +36,7 @@ echo "<td>$i->user_last_logged_in</td>";
 // echo "<a href="abujaba2web.engr.illinois.edu/cs411project/forms/editUser.form.php">edit</a>";
 ?>
 
-<form method="post" action="">
+<form method="post" action="forms/editUser.form.php">
 
 
 <input type='submit' value="Edit" name='<?php echo "editBtn$i->user_id"; ?>'>;
