@@ -1,11 +1,11 @@
 <?php 
-require '../dbconfig.php';
-require '../classes/Database.php';
+require '../../dbconfig.php';
+require '../../classes/Database.php';
 $db = new DatabaseConnection();
 $user = $db->getUserFromID($_GET["user_id"]);
 ?>
 <div id="userRegistrationForm">
-	<form method="POST" action="forms/editUserProcess.php">
+	<form method="POST" action="../inc/editUserProcess.php">
 		<input hidden="true" name="user_id" value="<?php echo $user->user_id; ?>">
 		<ul class='form-style-1'>
 			<li>

@@ -1,4 +1,7 @@
 <?php 
+require '../user_session.php';
+if(!$currentUser || $currentUser->user_role != "administrator")
+	header("Location: ../404.php");
 require '../dbconfig.php';
 require '../classes/Database.php'; ?>
 <div id="dashboard">
@@ -10,7 +13,7 @@ require '../classes/Database.php'; ?>
 <td>First Name</td>
 <td>Last Name</td>
 <td>Email</td>
-<td>DOB</td>
+<!-- <td>DOB</td> -->
 <td>Last Login</td>
 </tr>
 
@@ -37,28 +40,23 @@ echo "<td>$i->user_role</td>";
 echo "<td>$i->user_firstname</td>";
 echo "<td>$i->user_lastname</td>";
 echo "<td>$i->user_email</td>";
-echo "<td>$i->user_dob</td>";
+// echo "<td>$i->user_dob</td>";
 echo "<td>$i->user_last_logged_in</td>";
-
-
-echo"<form method='post' action='forms/editUser.form.php'>";
-
-
-echo"<input type='submit' value='Edit' name='editBtn$i->user_id'>";
-
-
-echo "</form>";
-
-
-
-echo"<form method='post' action=''>";
-
-echo"<input type='submit' value='Delete' name='deleteBtn$i->user_id'>";
-echo"</form>";
-echo"</tr>";
-}
-
 ?>
+	<td>
+		<form method='get' action='forms/editUser.form.php'>
+			<input hidden="true" value="<?php echo $i->user_id; ?>" name="user_id">
+			<input type='submit' value='Edit'>
+		</form>
+	</td>
+	<td>
+		<form method='get' action='inc/deleteUserProcess.php'>
+			<input hidden="true" value="<?php echo $i->user_id; ?>" name="user_id">
+			<input type='submit' value='Delete'>
+		</form>
+	</td>
+</tr>
+<?php } ?>
 </tbody>
 </table>
 

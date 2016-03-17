@@ -1,4 +1,5 @@
 <?php
+require '../dbconfig.php';
 require '../classes/Database.php';
 require '../libs/password.php';
 if(isset($_POST)){

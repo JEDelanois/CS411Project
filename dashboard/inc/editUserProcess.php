@@ -31,7 +31,7 @@ if(isset($_POST)){
 
 	// $db->insertUserIntoTable($userInfo);
 
-	header("Location: ../editUser.php?user_id=" . $userInfo["user_id"]);
+	header("Location: ../users.php");
 }
 
 

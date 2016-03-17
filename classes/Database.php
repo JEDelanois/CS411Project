@@ -122,4 +122,12 @@ class DatabaseConnection {
 			]);
 		}
 	}
+
+	public function deleteUserFromID($userID){
+		$sqlQuery = "DELETE FROM `Users` WHERE user_id = :user_id";
+		$STH = $this->_db->prepare($sqlQuery);
+			$STH->execute([
+				':user_id'		=> $userID
+			]);
+	}
 }

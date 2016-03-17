@@ -1,6 +1,5 @@
 <?php 
 require 'user_session.php'; 
-require 'config.php';
 ?>
 <!DOCTYPE html>
 <html>
