@@ -39,7 +39,7 @@ echo "<td>$i->user_last_logged_in</td>";
 <form method="post" action="forms/editUser.form.php">
 
 
-<input type='submit' value="Edit" name='<?php echo "editBtn$i->user_id"; ?>'>;
+<input type='submit' value="Edit" name='<?php echo "editBtn$i->user_id"; ?>'>
 
 
 </form>
@@ -50,7 +50,7 @@ echo "<td>$i->user_last_logged_in</td>";
 
 <input type='submit' value="Delete" name='<?php echo "deleteBtn$i->user_id"; ?>'>;
 </form>
-echo "</tr>";
+</tr>
 }
 </tbody>
 </table>
