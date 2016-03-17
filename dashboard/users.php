@@ -1,6 +1,6 @@
 <?php require '../classes/Database.php';?>
 <div id="dashboard">
-<table>
+<table id="hor-minimalist-a">
 <tbody>
 <tr>
 <td>ID</td>
