@@ -1,4 +1,6 @@
-<?php require '../classes/Database.php';?>
+<?php 
+require '../dbconfig.php';
+require '../classes/Database.php'; ?>
 <div id="dashboard">
 <table>
 <tbody>
@@ -14,15 +16,19 @@
 
 
 <?php
+
 // if(isset($_GET["user"]))
 // 	echo $_GET["user"];
 // else
 // 	echo 'not found';
+
 $db = new DatabaseConnection();
 $arr = $db->getUsersFromTable();
+
 // echo '<pre>';
 // print_r($arr);
 // echo '</pre>';
+
 foreach($arr as $i)
 {
 echo "<tr>";
@@ -37,8 +43,14 @@ echo "<td>$i->user_last_logged_in</td>";
 echo "<button type='button'>Delete</button>";
 echo "</tr>";
 }
+
 ?>
 </tbody>
 </table>
+
+
+
+
+
 
 

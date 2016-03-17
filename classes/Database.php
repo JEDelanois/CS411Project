@@ -1,5 +1,6 @@
 <?php 
-require '../dbconfig.php';
+// define("CONFIG_FILE_DIR", "../");
+// require CONFIG_FILE_DIR . 'dbconfig.php';
 // require 'User.php';
 
 class DatabaseConnection {
@@ -94,5 +95,31 @@ class DatabaseConnection {
 		$STH->execute();
 		$STH->setFetchMode(PDO::FETCH_CLASS, "User");
 		return $STH->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	public function changeUserData($userInfo, $changePassword){
+		if($changePassword)
+			$sqlQuery = "UPDATE `Users` SET `user_role`= :role,`user_firstname`= :firstName,`user_lastname`= :lastName,`user_email`= :emailAddress,`user_password`= :password WHERE user_id = :user_id";
+		else
+			$sqlQuery = "UPDATE `Users` SET `user_role`= :role,`user_firstname`= :firstName,`user_lastname`= :lastName,`user_email`= :emailAddress WHERE user_id = :user_id";
+		$STH = $this->_db->prepare($sqlQuery);
+		if($changePassword){
+			$STH->execute([
+	            ':firstName' 	        => $userInfo["user_firstName"],
+	            ':lastName' 	        => $userInfo["user_lastName"],
+	            ':emailAddress'         => $userInfo["user_email"],
+	            ':password' 	        => $userInfo["user_password"],
+	            ':role'					=> $userInfo["user_role"],
+	            ':user_id'				=> $userInfo["user_id"],
+			]);
+		} else {
+			$STH->execute([
+	            ':firstName' 	        => $userInfo["user_firstName"],
+	            ':lastName' 	        => $userInfo["user_lastName"],
+	            ':emailAddress'         => $userInfo["user_email"],
+	            ':role'					=> $userInfo["user_role"],
+	            ':user_id'				=> $userInfo["user_id"],
+			]);
+		}
 	}
 }
