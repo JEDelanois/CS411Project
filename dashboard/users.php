@@ -38,11 +38,20 @@ echo "<td>$i->user_last_logged_in</td>";
 
 <form method="post" action="">
 
+
+<input type='submit' value="Edit" name='<?php echo "editBtn$i->user_id"; ?>'>;
+
+
+</form>
+
+
+
+<form method="post" action="">
+
 <input type='submit' value="Delete" name='<?php echo "deleteBtn$i->user_id"; ?>'>;
 </form>
 echo "</tr>";
 }
-?>
 </tbody>
 </table>
 
