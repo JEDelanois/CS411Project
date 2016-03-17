@@ -20,13 +20,13 @@ for i in range(0,100):
 		continue
 		
 	data_list = shlex.split(data_str)
-	print data_list[3]
+	data_list.append(name)
 
 	cursor = db.cursor()
 
 	#repalce words with '_' witht he actual name from data base
 	#no urls were recorded so they should just be set to their default values right?
-	add_statement = 'INSERT INTO _TABLENAME (_PROTEIN, _FAT, _CARB,_SUGAR) VALUES (%s,%s,%s,%s);'
+	add_statement = 'INSERT INTO _TABLENAME (_PROTEIN, _FAT, _CARB, _SUGAR, _name) VALUES (%s,%s,%s,%s);'
     cur.execute(add_statement, data_list )
 
 
