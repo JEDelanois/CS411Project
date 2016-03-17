@@ -45,7 +45,7 @@ echo "</form>";
 
 
 
-echo"<form method='post' action=''>"
+echo"<form method='post' action=''>";
 
 echo"<input type='submit' value='Delete' name='deleteBtn$i->user_id'>";
 echo"</form>";
