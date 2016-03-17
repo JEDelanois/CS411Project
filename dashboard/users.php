@@ -33,7 +33,6 @@ echo "<td>$i->user_lastname</td>";
 echo "<td>$i->user_email</td>";
 echo "<td>$i->user_dob</td>";
 echo "<td>$i->user_last_logged_in</td>";
-// echo "<a href="abujaba2web.engr.illinois.edu/cs411project/forms/editUser.form.php">edit</a>";
 ?>
 
 <form method="post" action="forms/editUser.form.php">
@@ -55,4 +54,4 @@ echo "<td>$i->user_last_logged_in</td>";
 </tbody>
 </table>
 
-
+</div>
