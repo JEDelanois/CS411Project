@@ -130,4 +130,18 @@ class DatabaseConnection {
 				':user_id'		=> $userID
 			]);
 	}
+
+	public function getAllIngredients(){
+		$sqlQuery = "SELECT * FROM Ingredients WHERE 1";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute();
+		return $STH->fetchAll();
+	}
+
+	public function getIngredientsSearchString($string){
+		$sqlQuery = "SELECT * FROM Ingredients WHERE ingredient_name LIKE '%$string%'";
+		$STH = $this->_db->prepare($sqlQuery);
+		$STH->execute();
+		return $STH->fetchAll();
+	}
 }
