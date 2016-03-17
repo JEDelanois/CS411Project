@@ -30,7 +30,8 @@ for i in range(0,100):
 	#repalce words with '_' witht he actual name from data base
 	#no urls were recorded so they should just be set to their default values right?
 	# add_statement = 'INSERT INTO _TABLENAME (_PROTEIN, _FAT, _CARB, _SUGAR, _name) VALUES (%s,%s,%s,%s);'
-        add_statement = "INSERT INTO Ingredients (ingredient_protien, ingredient_fat, ingredient_fat, ingredient_fat, ingredient_name) VALUES (%s,%s,%s,%s, %s);" % (data_list[0], data_list[1], data_list[2], data_list[3], data_list[4])
+#        add_statement = "INSERT INTO Ingredients (ingredient_protien, ingredient_fat, ingredient_fat, ingredient_fat, ingredient_name) VALUES (%s,%s,%s,%s, %s);" % (data_list[0], data_list[1], data_list[2], data_list[3], data_list[4]
+        add_statement = "INSERT INTO `Ingredients`(`ingredient_name`, `ingredient_protien`, `ingredient_sugar`, `ingredient_carbs`, `ingredient_fat`) VALUES (%s,%s,%s,%s,%s)" % (data_list[4], data_list[0], data_list[3], data_list[2], data_list[1])
 
         cursor.execute(add_statement)
 
