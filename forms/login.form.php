@@ -1,4 +1,10 @@
 <div id="loginForm">
+	<p> 
+	<?php 
+		if(isset($_GET["invalidUserCombination"]) && $_GET["invalidUserCombination"])
+			echo 'Invalid email and password combination<br>';
+	?>
+	</p>
 	<form method="POST" action="inc/loginUserProcess.php">
 		<div id="loginFormEmailGroup">
 			<label for="loginFormEmailTextField" id="loginFormEmailLabel">Email: </label>

@@ -5,11 +5,15 @@ class User {
 
 	public function __construct($userArray = NULL){
 		if($userArray){
-			$this->_firstName = $firstname;
-			$this->_lastName = $lastname;
-			$this->_emailAddress = $emailAddress;
-			$this->_dob = $dob;
-			$this->_role = $role;
+			$this->user_firstname = $userArray["user_firstname"];
+			$this->user_lastname = $userArray["user_lastname"];
+			$this->user_email = $userArray["user_email"];
+			if(isset($userArray["user_dob"]))
+				$this->user_dob = $userArray["user_dob"];
+			else
+				$this->user_dob = NULL;
+			$this->user_role = $userArray["user_role"];
+			$this->user_last_logged_in = NULL;
 		}
 	}
 
