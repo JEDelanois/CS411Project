@@ -2,7 +2,7 @@
 require '../dbconfig.php';
 require '../classes/Database.php'; ?>
 <div id="dashboard">
-<table>
+<table id="hor-minimalist-a">
 <tbody>
 <tr>
 <td>ID</td>
@@ -39,14 +39,34 @@ echo "<td>$i->user_lastname</td>";
 echo "<td>$i->user_email</td>";
 echo "<td>$i->user_dob</td>";
 echo "<td>$i->user_last_logged_in</td>";
-// echo "<a href="abujaba2web.engr.illinois.edu/cs411project/forms/editUser.form.php">edit</a>";
-echo "<button type='button'>Delete</button>";
-echo "</tr>";
+
+
+echo"<form method='post' action='forms/editUser.form.php'>";
+
+
+echo"<input type='submit' value='Edit' name='editBtn$i->user_id'>";
+
+
+echo "</form>";
+
+
+
+echo"<form method='post' action=''>";
+
+echo"<input type='submit' value='Delete' name='deleteBtn$i->user_id'>";
+echo"</form>";
+echo"</tr>";
 }
 
 ?>
 </tbody>
 </table>
+
+</div>
+
+
+
+
 
 
 
