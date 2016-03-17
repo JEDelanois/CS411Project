@@ -34,7 +34,12 @@ echo "<td>$i->user_email</td>";
 echo "<td>$i->user_dob</td>";
 echo "<td>$i->user_last_logged_in</td>";
 // echo "<a href="abujaba2web.engr.illinois.edu/cs411project/forms/editUser.form.php">edit</a>";
-echo "<button type='button'>Delete</button>";
+?>
+
+<form method="post" action="">
+
+<input type='submit' value="Delete" name='<?php echo "deleteBtn$i->user_id"; ?>'>;
+</form>
 echo "</tr>";
 }
 ?>
