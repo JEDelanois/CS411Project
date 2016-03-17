@@ -15,7 +15,7 @@ if($currentUser){
 
 <form method="get" action="">
 
-<input type="text" placeholder="Apples" name="s">
+<input type="text" placeholder="Apples" name="s" value="<?php if(isset($_GET["s"])) echo $_GET["s"]; ?>">
 <input type="submit" value="Search">
 
 </form>
