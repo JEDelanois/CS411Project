@@ -33,25 +33,32 @@ echo "<td>$i->user_lastname</td>";
 echo "<td>$i->user_email</td>";
 echo "<td>$i->user_dob</td>";
 echo "<td>$i->user_last_logged_in</td>";
-?>
-
-<form method="post" action="forms/editUser.form.php">
 
 
-<input type='submit' value="Edit" name='<?php echo "editBtn$i->user_id"; ?>'>
+echo"<form method='post' action='forms/editUser.form.php'>";
 
 
-</form>
+echo"<input type='submit' value='Edit' name='editBtn$i->user_id'>";
+
+
+echo "</form>";
 
 
 
-<form method="post" action="">
+echo"<form method='post' action=''>"
 
-<input type='submit' value="Delete" name='<?php echo "deleteBtn$i->user_id"; ?>'>;
-</form>
-</tr>
+echo"<input type='submit' value='Delete' name='deleteBtn$i->user_id'>";
+echo"</form>";
+echo"</tr>";
 }
+?>
 </tbody>
 </table>
 
 </div>
+
+
+
+
+
+
