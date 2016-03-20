@@ -1,0 +1,4 @@
+[15-Mar-2016 14:02:49 America/Chicago] PHP Warning:  require(../dbconfig.php): failed to open stream: No such file or directory in /home/abujaba2/public_html/cs411project/classes/Database.php on line 2
+[15-Mar-2016 14:02:49 America/Chicago] PHP Fatal error:  require(): Failed opening required '../dbconfig.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/abujaba2/public_html/cs411project/classes/Database.php on line 2
+[15-Mar-2016 14:04:20 America/Chicago] PHP Warning:  PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /home/abujaba2/public_html/cs411project/classes/Database.php on line 18
+[15-Mar-2016 14:09:43 America/Chicago] PHP Fatal error:  Call to undefined function password_hash() in /home/abujaba2/public_html/cs411project/inc/registerUserProcess.php on line 10
