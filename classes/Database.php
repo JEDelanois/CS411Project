@@ -1,4 +1,4 @@
-<?php 
+<?php
 // define("CONFIG_FILE_DIR", "../");
 // require CONFIG_FILE_DIR . 'dbconfig.php';
 // require 'User.php';
@@ -42,7 +42,7 @@ class DatabaseConnection {
                             ':user_last_logged_in' 	=> $currTime,
                             ':user_registered'      => $currTime
 			));
-		} 
+		}
 	}
 
 	public function checkEmailExist($email){
