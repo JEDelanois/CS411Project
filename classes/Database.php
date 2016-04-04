@@ -144,4 +144,25 @@ class DatabaseConnection {
 		$STH->execute();
 		return $STH->fetchAll();
 	}
+
+    public function insertIngredient($ingredient){
+        if(is_array($ingredient)){
+			$sqlQuery = "INSERT INTO `Ingredients`(`ingredient_name`, `ingredient_protien`, `ingredient_sugar`, `ingredient_carbs`, `ingredient_fat`, `ingredient_source`, `ingredient_serving_size`, `ingredient_changed`, `ingredient_added`) VALUES (:name,:protien,:sugar,:carbs,:fat,:source,:serving_size,:changed_date,:added_date)";
+			$STH = $this->_db->prepare($sqlQuery);
+            $currTime = date('Y-m-d H:i:s');
+            $STH->execute(array(
+                ':name'                 =>  (isset($ingredient["ingredient_name"])) ? $ingredient["ingredient_name"] : NULL,
+                ':protien'              =>  (isset($ingredient["ingredient_protien"])) ? $ingredient["ingredient_protien"] : NULL,
+                ':sugar'                =>  (isset($ingredient["ingredient_sugar"])) ? $ingredient["ingredient_sugar"] : NULL,
+                ':carbs'                =>  (isset($ingredient["ingredient_carbs"])) ? $ingredient["ingredient_carbs"] : NULL,
+                ':fat'                  =>  (isset($ingredient["ingredient_fat"])) ? $ingredient["ingredient_fat"] : NULL,
+                ':source'               =>  (isset($ingredient["ingredient_source"])) ? $ingredient["ingredient_source"] : NULL,
+                ':serving_size'         =>  (isset($ingredient["ingredient_serving_size"])) ? $ingredient["ingredient_serving_size"] : NULL,
+                ':changed_date' 	    =>  $currTime,
+                ':added_date'            =>  $currTime
+            ));
+        } else {
+            echo 'Error! Passed in ingredient must be an array';
+        }
+    }
 }
