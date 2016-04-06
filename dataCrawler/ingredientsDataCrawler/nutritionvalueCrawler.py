@@ -129,7 +129,7 @@ def CrawlPage(url, outfile):
 
 
 	if soup.h1 is not None: 
-		outfile.write((soup.h1.text + ":\t" + protein +  " " +  fat +  " " + carb +  " " + sugar + " ").encode('utf-8').strip())
+		outfile.write((soup.h1.text + ":\t" + protein +  " " +  fat +  " " + carb +  " " + sugar + " " + url).encode('utf-8').strip())
 		outfile.write("\n")
 
 	return True
