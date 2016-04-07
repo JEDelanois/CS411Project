@@ -15,7 +15,7 @@ if(isset($_GET['name'])){
 
     if(isset($_GET["protien"])){
         $protien = htmlentities($_GET["protien"]);
-        if(!intval($protien) && $protien[0] != '0')
+        if(!floatval($protien) && $protien[0] != '0')
            $errors["ingredient_protien_error"] = "Ingredient's protien amount should be a number";
         else
             $ingredient["ingredient_protien"] = $protien;
@@ -24,7 +24,7 @@ if(isset($_GET['name'])){
 
     if(isset($_GET["sugar"])){
         $sugar = htmlentities($_GET["sugar"]);
-        if(!intval($sugar) && $sugar[0] != '0')
+        if(!floatval($sugar) && $sugar[0] != '0')
             $errors["ingredient_sugar_error"] = "Ingredient's sugar amount should be anumber";
         else
             $ingredient["ingredient_sugar"] = $sugar;
@@ -33,7 +33,7 @@ if(isset($_GET['name'])){
 
     if(isset($_GET["carbs"])){
         $carbs = htmlentities($_GET["carbs"]);
-        if(!intval($carbs) && $carbs != '0')
+        if(!floatval($carbs) && $carbs != '0')
             $errors["ingredient_carbs_error"] = "Ingredient's carbs amount should be a number";
         else
             $ingredient["ingredient_carbs"] = $carbs;
@@ -42,7 +42,7 @@ if(isset($_GET['name'])){
 
     if(isset($_GET["fat"])){
         $fat = htmlentities($_GET["fat"]);
-        if(!intval($fat) && $fat != '0')
+        if(!floatval($fat) && $fat != '0')
             $errors["ingredient_fat_error"] = "Ingredient's fat amount should be a number";
         else
             $ingredient["ingredient_fat"] = $fat;
@@ -56,7 +56,7 @@ if(isset($_GET['name'])){
 
     if(isset($_GET["serving_size"])){
         $serving_size = htmlentities($_GET["serving_size"]);
-        if(!intval($serving_size) && $serving_size[0] != '0')
+        if(!floatval($serving_size) && $serving_size[0] != '0')
             $errors["ingredient_serving_size"] = "Serving size should be a number";
         else
             $ingredient["ingredient_serving_size"] = $serving_size;
