@@ -11,8 +11,8 @@ if(isset($_GET["email"]) && isset($_GET["password"]) &&
     $userEmail = htmlentities($_GET["email"]);
     if(!$db->checkEmailExist($userEmail)){
         $userInfo = [];
-        $userInfo["user_firstName"] = htmlentities($_GET["firstname"]);
-        $userInfo["user_lastName"] = htmlentities($_GET["lastname"]);
+        $userInfo["user_firstname"] = htmlentities($_GET["firstname"]);
+        $userInfo["user_lastname"] = htmlentities($_GET["lastname"]);
         $userInfo["user_email"] = $userEmail;
         $userPassword = htmlentities($_GET["password"]);
         $userInfo["user_password"] = password_hash($userPassword, PASSWORD_DEFAULT);

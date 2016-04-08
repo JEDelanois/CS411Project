@@ -41,3 +41,15 @@ source (optional): The source of the ingredient. If the source is a number it re
 <h2>Returns</h2>
 On success returns the ingredient. On faliure returns null with an error.
 </p>
+<h1>Edit User</h1>
+<a href="editUser.php">Edit User</a>
+<p>
+<h2>Endpoint Usage: </h2>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/editUser.php?id=12&&firstname=newName&&lastname=newLastName&&new_email=new@email.com
+<h2>Arguments</h2>
+Either the user id or email should be included otherwise an error will be returned<br>
+Optional arguments that can be changed:<br>
+firstname, lastname, new_email, dob, weight, height, gender, activity_type, profile_image, password<br>
+<h2>Returns</h2>
+On success returns the new user information. On faliure returns null with an error.
+</p>
