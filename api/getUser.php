@@ -10,6 +10,16 @@ $db = new DatabaseConnection();
 if(isset($_GET["id"]) || isset($_GET["email"])){
     if(isset($_GET["id"])){
         $user_id = htmlentities($_GET["id"]);
+        if(!intval($user_id)){
+            echo json_encode([
+                'num_results'   =>  0,
+                'results'       => null,
+                'errors'        => [
+                    'id_error'      =>  'User id needs to be an int',
+                ],
+               ]);
+            return;
+        }
         $user = $db->getUserFromID($user_id);
         if($user == NULL){
             echo json_encode([
