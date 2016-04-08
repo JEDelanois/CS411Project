@@ -53,3 +53,13 @@ firstname, lastname, new_email, dob, weight, height, gender, activity_type, prof
 <h2>Returns</h2>
 On success returns the new user information. On faliure returns null with an error.
 </p>
+<h1>Get User</h1>
+<a href="getUser.php">Edit User</a>
+<p>
+<h2>Endpoint Usage: </h2>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/getUser.php?id=12
+<h2>Arguments</h2>
+Either the user id or email should be included otherwise an error will be returned<br>
+<h2>Returns</h2>
+On success returns the user information. On faliure returns null with an error.
+</p>

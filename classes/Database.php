@@ -70,7 +70,6 @@ class DatabaseConnection {
     }
 
     public function getUserFromEmail($email){
-        if(!checkEmailExist($email)) return NULL;
         $sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_weight`, `user_height`, `user_gender`, `user_activity_type`, `user_profile_image`, `user_last_logged_in`, `user_registered` FROM `Users` WHERE user_email = :email";
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute([
