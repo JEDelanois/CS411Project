@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 <?php 
 require '../user_session.php';
 if(!$currentUser || $currentUser->user_role != "administrator")
@@ -5,7 +7,7 @@ if(!$currentUser || $currentUser->user_role != "administrator")
 require '../dbconfig.php';
 require '../classes/Database.php'; ?>
 <div id="dashboard">
-<table id="hor-minimalist-a">
+<table class="pure-table">
 <tbody>
 <tr>
 <td>ID</td>
@@ -34,7 +36,7 @@ $arr = $db->getUsersFromTable();
 
 foreach($arr as $i)
 {
-echo "<tr>";
+echo "<tr class='pure-table-odd'>";
 echo "<td>$i->user_id</td>";
 echo "<td>$i->user_role</td>";
 echo "<td>$i->user_firstname</td>";
