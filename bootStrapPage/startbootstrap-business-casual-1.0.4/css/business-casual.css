@@ -46,6 +46,17 @@ hr {
     font-weight: 900;
     letter-spacing: 2px;
 }
+.img-container{
+	position:relative;
+	padding-top:66.59%;
+
+}
+img.colu{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+}
 
 .navbar-nav {
     text-transform: uppercase;
