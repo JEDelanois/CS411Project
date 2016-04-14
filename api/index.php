@@ -63,3 +63,27 @@ Either the user id or email should be included otherwise an error will be return
 <h2>Returns</h2>
 On success returns the user information. On faliure returns null with an error.
 </p>
+<h1>Add to Nutrition Log</h1>
+<a href="addNutritionLog.php">Add to Nutrition Log</a>
+<h2>Endpoint Usage: </h2>
+<p>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/addNutritionLog.php?user_id=17&&date=2016-04-14&&time_of_day=morning&&recipe_id=4
+<h2>Arguments</h2>
+user_id (required): the id of the user<br>
+date (required): the day of the meal<br>
+time_of_day (optional): the time of the day<br>
+either recipe_id or ingredient_id<br>
+<h2>Returns</h2>
+On success returns the log information that was added. On faliure returns null with an error.
+</p>
+<h1>Get Nutrition Log</h1>
+<a href="getNutritionLog.php">
+<p>
+http://localhost:8888/cs411project/api/getNutritionLog.php?user_id=17&&date=2016-01-01&&time_of_day=night
+<h2>Arguments</h2>
+user_id (required): the id of the user<br>
+date (required): the day of the meal<br>
+time_of_day (optional): the time of the day<br>
+<h2>Returns</h2>
+On success returns the log information. On faliure returns null with an error.
+</p>

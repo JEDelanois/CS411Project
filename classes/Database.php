@@ -177,4 +177,44 @@ class DatabaseConnection {
             echo 'Error! Passed in ingredient must be an array';
         }
     }
+
+    public function addNutritionLogItem($userID, $date, $timeOfTheDay = NULL, $recipeID = NULL, $ingredientID = NULL){
+        if(!$this->getUserFromID($userID)){
+            echo 'user id is not valid<br>';
+            return NULL;
+        }
+        $sqlQuery = "INSERT INTO `NutritionLog`(`user_id`, `log_date`, `ingredient_id`, `recipe_id`, `log_time_of_the_day`, `log_added_date`) VALUES ( :userID, CAST('$date' AS DATE), :ingredientID,:recipeID,:time_of_the_day,:added_date)";
+        $STH = $this->_db->prepare($sqlQuery);
+        $currTime = date('Y-m-d H:i:s');
+        $STH->execute(array(
+            ':userID'               =>  $userID,
+           // ':date'                 =>  $logDate,
+            ':ingredientID'         =>  $ingredientID,
+            ':recipeID'             =>  $recipeID,
+            ':time_of_the_day'      =>  $timeOfTheDay,
+            ':added_date'           =>  $currTime
+        ));
+
+        $sqlQuery = "SELECT * FROM NutritionLog WHERE log_added_date = '$currTime' && user_id = $userID";
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        return $STH->fetchAll();
+    }
+
+
+    public function getNutritionLogItem($userID, $date = NULL, $timeOfTheDay = NULL){
+        if(!$this->getUserFromID($userID)){
+            echo 'user id is not valid<br>';
+            return NULL;
+        }
+        $sqlQuery = "SELECT * FROM NutritionLog WHERE user_id = $userID";
+        if($date){
+            $sqlQuery .= " AND log_date = '$date'";
+            if($timeOfTheDay)
+                $sqlQuery .= " AND log_time_of_the_day = '$timeOfTheDay'";
+        }
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        return $STH->fetchAll();
+    }
 }
