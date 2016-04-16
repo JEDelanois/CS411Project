@@ -77,9 +77,9 @@ either recipe_id or ingredient_id<br>
 On success returns the log information that was added. On faliure returns null with an error.
 </p>
 <h1>Get Nutrition Log</h1>
-<a href="getNutritionLog.php">
+<a href="getNutritionLog.php">Get Nutrition Log</a>
 <p>
-http://localhost:8888/cs411project/api/getNutritionLog.php?user_id=17&&date=2016-01-01&&time_of_day=night
+http://abujaba2.web.engr.illinois.edu/cs411project/api/getNutritionLog.php?user_id=17&&date=2016-01-01&&time_of_day=night
 <h2>Arguments</h2>
 user_id (required): the id of the user<br>
 date (required): the day of the meal<br>
