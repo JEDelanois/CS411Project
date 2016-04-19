@@ -19,7 +19,7 @@ if(isset($_GET["recipe_id"])){
     else
         $page = 0;
 
-    $arr = getRecipe($recipe_id, $limit, $page);
+    $arr = $db->getRecipe($recipe_id, $limit, $page);
 
     echo json_encode([
         'num_results'       =>      count($arr),
