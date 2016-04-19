@@ -25,7 +25,7 @@ for i in range(0,100):
 	data_list = shlex.split(data_str)
 	data_list.append(name)
 
-        t = tuple(data_list)
+    t = tuple(data_list)
 
 	cursor = db.cursor()
 
