@@ -52,10 +52,13 @@ function downloadImage($url){
     $fileExt = (explode('.', $origName));
     $fileExt = strtolower(end($fileExt));
     $dest = '../images/recipeImages';
+    if (!is_dir($dest)) {
+        mkdir($dest, 0777, true);
+    }
     $newFileName = uniqid('recipeImage_', true) . '.' . $fileExt;
     $file_dest = $dest . "/" . $newFileName;
     // copy($url, $file_dest);
     $content = file_get_contents($url);
     file_put_contents($file_dest, $content);
-    return $newFileName;
+    return "images/recipeImages/" . $newFileName;
 }
