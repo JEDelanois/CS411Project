@@ -87,3 +87,25 @@ time_of_day (optional): the time of the day<br>
 <h2>Returns</h2>
 On success returns the log information. On faliure returns null with an error.
 </p>
+<h1>add Recipe</h1>
+<a href="addRecipe.php">add Recipe</a>
+<p>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/addRecipe.php?recipe_name&&recipe_author=12
+<h2>Arguments</h2>
+recipe_name (required): title of the recipe<br>
+recipe_prep_time (optional): the preparation time. Format = 1H20M. equivelent to 1 hour and 20 minutes.<br>
+recipe_cook_time (optional): the cook time. Format = 1H20M. equivelent to 1 hour and 20 minutes.<br>
+recipe_ready_in_time (optional): the ready in time. Format = 1H20M. equivelent to 1 hour and 20 minutes.<br>
+recipe_image: (optional): the image of the recipe<br>
+recipe_categories (optional): the categories separated by commas<br>
+recipe_source (optional): the source of the recipe<br>
+recipe_author (optional): if the recipe is entered by an author then this is the user id<br>
+recipe_calories (optional): number of calories in the recipe<br>
+recipe_fat (optional): amount of fat<br>
+recipe_carbs (optional): amount of carbs<br>
+recipe_protein (optional): amount of protein<br>
+recipe_cholesterol (optional): amount of cholesterol<br>
+recipe_sodium (optional): amount of sodium<br>
+<h2>Returns</h2>
+On success returns the recipe that was added. On faliure returns null with an error.
+</p>
