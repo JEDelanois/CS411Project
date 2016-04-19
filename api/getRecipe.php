@@ -23,7 +23,7 @@ else
 if(isset($_GET["page"]))
     $page = htmlentities($_GET["page"]);
 else
-    $page = 0;
+    $page = 1;
 
 $arr = $db->getRecipe($recipe_id, (isset($limit)) ? $limit : NULL, (isset($page) ? $page : 0));
 

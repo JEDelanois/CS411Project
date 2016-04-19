@@ -289,9 +289,9 @@ class DatabaseConnection {
             return NULL;
     }
 
-    public function getRecipe($recipeID = NULL, $limit = NULL, $page = 0){
+    public function getRecipe($recipeID = NULL, $limit = NULL, $page = 1){
 
-        if($page < 1 || $limit < 0)
+        if( (isset($page) && $page < 1) || (isset($limit) && $limit < 0))
             return NULL;
 
         $sqlQuery = "SELECT * FROM Recipes";
