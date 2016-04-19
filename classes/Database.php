@@ -303,9 +303,10 @@ class DatabaseConnection {
         $recipeArr = $STH->fetchAll();
 
         // get the ingredients
-        $recipeArr["ingredients"] = getIngredientsOfRecipe($recipe["recipe_id"]);
+        $recipeArr["ingredients"] = $this->getIngredientsOfRecipe($recipe["recipe_id"]);
         // get directions
-        $recipeArr["directions"] = getDirectionsOfRecipe($recipe["recipe_id"]);
+        $recipeArr["directions"] = $this->getDirectionsOfRecipe($recipe["recipe_id"]);
+        return $recipeArr;
     }
 
     public function getIngredientsOfRecipe($recipeID){
