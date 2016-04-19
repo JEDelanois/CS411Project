@@ -7,14 +7,18 @@ import shlex
 
 
 # db = mdb.connect(host=host(), user=user(), passwd=password(), db=database() )
-db = mdb.connect(host="engr-cpanel1.engr.illinois.edu",user="abujaba2_cs411us",passwd=".v,5istf~91H",db="abujaba2_CS411Project")
+db = mdb.connect(host="localhost",user="root",passwd="root",db="CS411_db",unix_socket="/Applications/MAMP/tmp/mysql/mysql.sock")
 # db = mdb.connect(host="localhost",user="root",passwd="root",db="cs411project")
 # db= _mysql.connect(host="localhost",user="joebob", passwd="moonpie",db="thangs")
+cursor = db.cursor()
 
 output = open('output.txt','r')
-
-for i in range(0,1):
+i = 0
+while output is not None:
 	line = output.readline()
+	line = line.replace("\xc2\xa0", "")
+	if line == "":
+		continue
 	name = line.split(':')[0]
 	data_str = "" 
 	if '\t' in line:
@@ -23,11 +27,10 @@ for i in range(0,1):
 		continue
 		
 	data_list = shlex.split(data_str)
+	data_list.pop() #remove source for now
 	data_list.append(name)
 
-	t = tuple(data_list)
 
-	cursor = db.cursor()
 
 	#repalce words with '_' witht he actual name from data base
 	#no urls were recorded so they should just be set to their default values right?
@@ -35,7 +38,14 @@ for i in range(0,1):
   	add_statement = "INSERT INTO Ingredients (ingredient_protien, ingredient_fat, ingredient_carbs, ingredient_sugar, ingredient_name) VALUES (%s,%s,%s,%s,%s);"
 #        add_statement = "INSERT INTO `Ingredients`(`ingredient_name`, `ingredient_protien`, `ingredient_sugar`, `ingredient_carbs`, `ingredient_fat`) VALUES (%s,%s,%s,%s,%s)" # % (data_list[4], data_list[0], data_list[3], data_list[2], data_list[1])
 
-    #cursor.execute(add_statement, t)
+ 	cursor.execute(add_statement, data_list )
+ 	
+ 	i = i + 1
+ 	if (i % 100) == 0:
+ 		print i
+
+cursor.close()
+db.close()
 
 
   
