@@ -47,13 +47,13 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="index.html">Business Casual</a>
+            <a class="navbar-brand" href="indexnew.php">Business Casual</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.php">Home</a>
+                    <a href="indexnew.php">Home</a>
                 </li>
                 <li>
                     <a href="about.html">Ingredients</a>
@@ -62,7 +62,7 @@
                     <a href="login.php">Login</a>
                 </li>
                 <li>
-                    <a href="dashboard/users.php">Dashboard</a>
+                    <a href="/CS411Project/dashboard/users.php">Dashboard</a>
                 </li>
             </ul>
         </div>
@@ -70,6 +70,7 @@
     </div>
     <!-- /.container -->
 </nav>
+
 
 <div class="container">
 
@@ -131,7 +132,91 @@
         </div>
     --->
 
+    <?php
 
+    for($x=0; $x<10; $x++)
+    {
+
+      echo '<div class="row">';
+            echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+                echo '<div class="thumbnail">';
+                    echo '<img src="http://placehold.it/320x150" alt="">';
+                    echo '<div class="caption">';
+                        echo '<h4><a href="#">First Product</a></h4>';
+                        echo '<p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>';
+                    echo '</div>';
+
+                echo '</div>';
+            echo '</div>';
+
+            echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+                echo '<div class="thumbnail">';
+                    echo '<img src="http://placehold.it/320x150" alt="">';
+                    echo '<div class="caption">';
+                        echo '<h4><a href="#">Second Product</a></h4>';
+                        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                    echo '</div>';
+
+                echo '</div>';
+            echo '</div>';
+
+        echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+        echo '<div class="thumbnail">';
+        echo '<img src="http://placehold.it/320x150" alt="">';
+        echo '<div class="caption">';
+        echo '<h4><a href="#">Second Product</a></h4>';
+        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '</div>';
+
+        echo '</div>';
+        echo '</div>';
+
+
+        echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+        echo '<div class="thumbnail">';
+        echo '<img src="http://placehold.it/320x150" alt="">';
+        echo '<div class="caption">';
+        echo '<h4><a href="#">First Product</a></h4>';
+        echo '<p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>';
+        echo '</div>';
+
+
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+        echo '<div class="thumbnail">';
+        echo '<img src="http://placehold.it/320x150" alt="">';
+        echo '<div class="caption">';
+        echo '<h4><a href="#">Second Product</a></h4>';
+        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '</div>';
+
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="col-sm-4 col-lg-4 col-md-4">';
+        echo '<div class="thumbnail">';
+        echo '<img src="http://placehold.it/320x150" alt="">';
+        echo '<div class="caption">';
+        echo '<h4><a href="#">Second Product</a></h4>';
+        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '</div>';
+
+        echo '</div>';
+        echo '</div>';
+
+        echo '</div>';
+
+
+
+
+
+    }
+
+    ?>
+
+<!---
     <div class="row">
 
         <div class="col-sm-4 col-lg-4 col-md-4">
@@ -268,7 +353,147 @@
 
     </div>
 
+    <div class="row">
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$24.99</h4>
+                    <h4><a href="#">First Product</a>
+                    </h4>
+                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$64.99</h4>
+                    <h4><a href="#">Second Product</a>
+                    </h4>
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">12 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$74.99</h4>
+                    <h4><a href="#">Third Product</a>
+                    </h4>
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">31 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$84.99</h4>
+                    <h4><a href="#">Fourth Product</a>
+                    </h4>
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">6 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$94.99</h4>
+                    <h4><a href="#">Fifth Product</a>
+                    </h4>
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$94.99</h4>
+                    <h4><a href="#">Fifth Product</a>
+                    </h4>
+                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+---->
+    </div>
+
+
+
+
 </div>
+
 
 
 
