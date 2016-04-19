@@ -288,4 +288,44 @@ class DatabaseConnection {
         } else
             return NULL;
     }
+
+    public function getRecipe($recipeID = NULL, $limit = NULL, $page = 0){
+
+        $sqlQuery = "SELECT * FROM Recipes";
+
+        if($recipeID){
+            $sqlQuery .= " WHERE recipe_id = $recipeID";
+        } else if($limit) {
+            $sqlQuery .= " LIMIT " . $page * $limit . ", " . ($page + 1) * $limit;
+        }
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        $recipeArr = $STH->fetchAll();
+
+        // get the ingredients
+        $recipeArr["ingredients"] = getIngredientsOfRecipe($recipe["recipe_id"]);
+        // get directions
+        $recipeArr["directions"] = getDirectionsOfRecipe($recipe["recipe_id"]);
+    }
+
+    public function getIngredientsOfRecipe($recipeID){
+        $sqlQuery = "SELECT ingredient_text FROM Contains WHERE recipe_id = $recipeID";
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        return $STH->fetchAll();
+    }
+
+    public function getDirectionsOfRecipe($recipeID){
+        $sqlQuery = "SELECT direction_number, direction_text FROM RecipeDirection WHERE recipe_id = $recipeID";
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        $arr = $STH->fetchAll();
+
+        echo '<pre>';
+        print_r($arr);
+        echo '</pre>';
+
+        $directions = [];
+
+    }
 }
