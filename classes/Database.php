@@ -217,4 +217,75 @@ class DatabaseConnection {
         $STH->execute();
         return $STH->fetchAll();
     }
+
+    public function addRecipe($recipeInfo, $ingredients, $directions){
+        $sqlQuery = "INSERT INTO `Recipes`(`recipe_name`, `recipe_prep_time`, `recipe_cook_time`, `recipe_ready_in_time`, `recipe_image`, `recipe_categories`, `recipe_source`, `recipe_user_id`, `recipe_calories`, `recipe_fat`, `recipe_carbs`, `recipe_protein`, `recipe_cholesterol`, `recipe_sodium`, `recipe_added_date`) VALUES (:recipe_name, :recipe_prep_time, :recipe_cook_time, :recipe_ready_in_time, :recipe_image, :recipe_categories, :recipe_source, :recipe_user_id, :recupe_calories, :recipe_fat, :recipe_carbs, :recipe_protein, :recipe_cholesterol, :recipe_sodium, :recipe_added_date)";
+        $STH = $this->_db->prepare($sqlQuery);
+        $currTime = date('Y-m-d H:i:s');
+        $STH->execute(array(
+            ":recipe_name"                          => (isset($recipeInfo["recipe_name"])) ? $recipeInfo["recipe_name"] : NULL,
+            ":recipe_prep_time"                     => (isset($recipeInfo["recipe_prep_time"])) ? $recipeInfo["recipe_prep_time"] : NULL,
+            ":recipe_cook_time"                     => (isset($recipeInfo["recipe_cook_time"])) ? $recipeInfo["recipe_cook_time"] : NULL,
+            ":recipe_ready_in_time"                 => (isset($recipeInfo["recipe_ready_in_time"])) ? $recipeInfo["recipe_ready_in_time"] : NULL,
+            ":recipe_image"                         => (isset($recipeInfo["recipe_image"])) ? $recipeInfo["recipe_image"] : NULL,
+            ":recipe_categories"                    => (isset($recipeInfo["recipe_categories"])) ? $recipeInfo["recipe_categories"] : NULL,
+            ":recipe_source"                        => (isset($recipeInfo["recipe_source"])) ? $recipeInfo["recipe_source"] : NULL,
+            ":recipe_user_id"                       => (isset($recipeInfo["recipe_user_id"])) ? $recipeInfo["recipe_user_id"] : NULL,
+            ":recupe_calories"                      => (isset($recipeInfo["recipe_calories"])) ? $recipeInfo["recipe_calories"] : NULL,
+            ":recipe_fat"                           => (isset($recipeInfo["recipe_fat"])) ? $recipeInfo["recipe_fat"] : NULL,
+            ":recipe_carbs"                         => (isset($recipeInfo["recipe_carbs"])) ? $recipeInfo["recipe_carbs"] : NULL,
+            ":recipe_protein"                       => (isset($recipeInfo["recipe_protein"])) ? $recipeInfo["recipe_protein"] : NULL,
+            ":recipe_cholesterol"                   => (isset($recipeInfo["recipe_cholesterol"])) ? $recipeInfo["recipe_cholesterol"] : NULL,
+            ":recipe_sodium"                        => (isset($recipeInfo["recipe_sodium"])) ? $recipeInfo["recipe_sodium"] : NULL,
+            ":recipe_added_date"                    => $currTime
+        ));
+
+        $sqlQuery = "SELECT * FROM `Recipes` WHERE `recipe_name` = '" . $recipeInfo["recipe_name"] . "' AND `recipe_added_date` = '$currTime'";
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        $recipeArr = $STH->fetchAll();
+        $recipeID = $recipeArr[0]['recipe_id'];
+
+        $recipeArr["ingredients"] = $this->insertIntoContains($recipeID, $ingredients);
+
+        $recipeArr["directions"] = $this->insertIntoRecipeDirection($recipeID, $directions);
+
+        return $recipeArr;
+    }
+
+    private function insertIntoContains($recipeID, $ingredients){
+        if(is_array($ingredients) && count($ingredients) > 0){
+            $sqlQuery = "INSERT INTO `Contains`(`recipe_id`, `ingredient_text`) VALUES ";
+            $count = 0;
+            foreach($ingredients as $ing){
+                if($count == 0){
+                    $sqlQuery .= "($recipeID, '$ing')";
+                    $count = 1;
+                } else {
+                    $sqlQuery .= ",($recipeID, '$ing')";
+                }
+            }
+            $STH = $this->_db->prepare($sqlQuery);
+            $STH->execute();
+            return $ingredients;
+        } else
+            return NULL;
+    }
+
+    private function insertIntoRecipeDirection($recipeID, $directions){
+        if(is_array($directions) && count($directions) > 0){
+            $sqlQuery = "INSERT INTO `RecipeDirection`(`recipe_id`, `direction_number`, `direction_text`) VALUES ";
+            foreach($directions as $key => $direc){
+                if($key == 1){
+                   $sqlQuery .= "($recipeID, $key, '$direc')";
+                } else {
+                    $sqlQuery .= ",($recipeID, $key, '$direc')";
+                }
+            }
+            $STH = $this->_db->prepare($sqlQuery);
+            $STH->execute();
+            return $directions;
+        } else
+            return NULL;
+    }
 }
