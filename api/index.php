@@ -109,3 +109,15 @@ recipe_sodium (optional): amount of sodium<br>
 <h2>Returns</h2>
 On success returns the recipe that was added. On faliure returns null with an error.
 </p>
+<h1>Get Recipe</h1>
+<a href="getRecipe.php">add Recipe</a>
+<p>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/addRecipe.php?recipe_name&&recipe_author=12
+<h2>Arguments</h2>
+recipe_id (optional): the id of the recipe<br>
+limit (optional): limit of the returned records<br>
+page (optional): the page of the fetched records<br>
+Note: if no arguments are passed then all the the recipes are returned.<br>
+<h2>Returns</h2>
+On success returns the recipe depending on the arguments. On faliure returns null with an error.
+</p>

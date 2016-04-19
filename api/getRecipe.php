@@ -9,25 +9,28 @@ $errors = [];
 
 if(isset($_GET["recipe_id"])){
     $recipe_id = htmlentities($_GET["recipe_id"]);
-    if(isset($_GET["limit"]))
-        $limit = htmlentities($_GET["limit"]);
-    else
-        $limit = NULL;
-
-    if(isset($_GET["page"]))
-        $page = htmlentities($_GET["page"]);
-    else
-        $page = 0;
-
-    $arr = $db->getRecipe($recipe_id, $limit, $page);
-
-    echo json_encode([
-        'num_results'       =>      count($arr),
-            'results'           =>      $arr
-            ]);
-
+    if(!intval($recipe_id)){
+        $errors["recipe_id_error"] = "Recipe ID needs to be an integer";
+    }
 } else
-    $errors["recipe_id_error"] = "Recipe ID is required.";
+    $recipe_id = NULL;
+
+if(isset($_GET["limit"]))
+    $limit = htmlentities($_GET["limit"]);
+else
+    $limit = NULL;
+
+if(isset($_GET["page"]))
+    $page = htmlentities($_GET["page"]);
+else
+    $page = 0;
+
+$arr = $db->getRecipe($recipe_id, (isset($limit)) ? $limit : NULL, (isset($page) ? $page : 0));
+
+echo json_encode([
+    'num_results'       =>      count($arr),
+        'results'           =>      $arr
+        ]);
 
 if(count($errors) > 0){
     $ingredientObj = [];

@@ -291,21 +291,25 @@ class DatabaseConnection {
 
     public function getRecipe($recipeID = NULL, $limit = NULL, $page = 0){
 
+        if($page < 1 || $limit < 0)
+            return NULL;
+
         $sqlQuery = "SELECT * FROM Recipes";
 
         if($recipeID){
             $sqlQuery .= " WHERE recipe_id = $recipeID";
         } else if($limit) {
-            $sqlQuery .= " LIMIT " . $page * $limit . ", " . ($page + 1) * $limit;
+            $sqlQuery .= " LIMIT " . ($page - 1) * $limit . ", " . $limit;
         }
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute();
         $recipeArr = $STH->fetchAll();
-
-        // get the ingredients
-        $recipeArr["ingredients"] = $this->getIngredientsOfRecipe($recipe["recipe_id"]);
-        // get directions
-        $recipeArr["directions"] = $this->getDirectionsOfRecipe($recipe["recipe_id"]);
+        for($i = 0; $i < count($recipeArr); $i++){
+            // get the ingredients
+            $recipeArr[$i]["ingredients"] = $this->getIngredientsOfRecipe($recipeArr[$i]["recipe_id"]);
+            // get directions
+            $recipeArr[$i]["directions"] = $this->getDirectionsOfRecipe($recipeArr[$i]["recipe_id"]);
+        }
         return $recipeArr;
     }
 
@@ -322,11 +326,11 @@ class DatabaseConnection {
         $STH->execute();
         $arr = $STH->fetchAll();
 
-        echo '<pre>';
-        print_r($arr);
-        echo '</pre>';
-
         $directions = [];
 
+        foreach($arr as $dir)
+            $directions[$dir["direction_number"]] = $dir["direction_text"];
+
+        return $directions;
     }
 }
