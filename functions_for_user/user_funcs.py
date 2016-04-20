@@ -78,7 +78,6 @@ def get_bodycomp(userID):
 
 
 
-
 def get_macro_day_total(userID, date): #date must be a datetime 
 	db = get_db()
 	cur = db.cursor()
@@ -136,9 +135,9 @@ def get_macro_day_total(userID, date): #date must be a datetime
 
 	#add up all food
 	for row in ingds:
-		protein = protein + row[0]
-		fat = fat + row[1]
-		carb = carb + row[2]
+		protein = protein + ((row[4]/row[3])*row[0])
+		fat = fat + ((row[4]/row[3])*row[1])
+		carb = carb + ((row[4]/row[3])*row[2])
 
 
 	for row in recs:
@@ -155,7 +154,7 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	db.close()
 	return [protein, fat, carb]
 
-#all recomendations FIT MACROS and additional min and max restrictions
+
 
 
 #tests
