@@ -135,9 +135,9 @@
     $content = file_get_contents("http://abujaba2.web.engr.illinois.edu/cs411project/api/getRecipe.php?limit=30&&page=1", true);
     $array = json_decode($content);
 
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
+//    echo '<pre>';
+  //  print_r($array);
+   // echo '</pre>';
 
 
 
