@@ -134,12 +134,12 @@
     <?php
     $content = file_get_contents("http://abujaba2.web.engr.illinois.edu/cs411project/api/getRecipe.php?limit=30&&page=1", true);
     $array = json_decode($content);
+/*
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
 
-//    echo '<pre>';
-  //  print_r($array);
-   // echo '</pre>';
-
-
+*/
 
 
     for($x=0; $x<10; $x++)
@@ -154,9 +154,9 @@
                 echo '<div class="thumbnail">';
         echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x]->recipe_image.'"height="150" width="320" alt="">';
                     echo '<div class="caption">';
-                        echo '<h4><a href="#">'.substr($array->results[$x]->recipe_name, 0, 30).'</a></h4>';
+                        echo '<h4><a href="views/recipeView.php?id='.$array->results[$x]->recipe_id.'">'.substr($array->results[$x]->recipe_name, 0, 50).'</a></h4>';
 
-                        echo '<p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>';
+
                     echo '</div>';
 
                 echo '</div>';
@@ -164,10 +164,10 @@
 
             echo '<div class="col-sm-4 col-lg-4 col-md-4">';
                 echo '<div class="thumbnail">';
-                    echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+1]->recipe_image.'"height="150" width="320" alt="">';
+                    echo '<img class="resize" src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+1]->recipe_image.'" alt="">';
                     echo '<div class="caption">';
-                    echo '<h4><a href="#">'.substr($array->results[$x+1]->recipe_name, 0, 30).'</a></h4>';
-                    echo '<p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>';
+                    echo '<h4><a href="#">'.substr($array->results[$x+1]->recipe_name, 0, 50).'</a></h4>';
+
                     echo '</div>';
 
                 echo '</div>';
@@ -177,8 +177,8 @@
         echo '<div class="thumbnail">';
         echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+2]->recipe_image.'"height="150" width="320" alt="">';
         echo '<div class="caption">';
-        echo '<h4><a href="#">'.substr($array->results[$x+2]->recipe_name, 0, 30).'</a></h4>';
-        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '<h4><a href="#">'.substr($array->results[$x+2]->recipe_name, 0, 50).'</a></h4>';
+
         echo '</div>';
 
         echo '</div>';
@@ -189,8 +189,8 @@
         echo '<div class="thumbnail">';
         echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+3]->recipe_image.'"height="150" width="320" alt="">';
         echo '<div class="caption">';
-        echo '<h4><a href="#">'.substr($array->results[$x+3]->recipe_name, 0, 30).'</a></h4>';
-        echo '<p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>';
+        echo '<h4><a href="#">'.substr($array->results[$x+3]->recipe_name, 0, 50).'</a></h4>';
+
         echo '</div>';
 
 
@@ -201,8 +201,8 @@
         echo '<div class="thumbnail">';
         echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+4]->recipe_image.'"height="150" width="320" alt="">';
         echo '<div class="caption">';
-        echo '<h4><a href="#">'.substr($array->results[$x+4]->recipe_name, 0, 30).'</a></h4>';
-        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '<h4><a href="#">'.substr($array->results[$x+4]->recipe_name, 0, 50).'</a></h4>';
+
         echo '</div>';
 
         echo '</div>';
@@ -212,8 +212,8 @@
         echo '<div class="thumbnail">';
         echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[$x+5]->recipe_image.'"height="150" width="320" alt="">';
         echo '<div class="caption">';
-        echo '<h4><a href="#">'.substr($array->results[$x+5]->recipe_name, 0, 30).'</a></h4>';
-        echo '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+        echo '<h4><a href="#">'.substr($array->results[$x+5]->recipe_name, 0, 50).'</a></h4>';
+
         echo '</div>';
 
         echo '</div>';
