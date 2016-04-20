@@ -87,13 +87,13 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	date = date.replace(hour=0, minute=0, second=0, microsecond=0) 
 	tomorrow = date.replace(day=(date.day+1),hour=0, minute=0, second=0, microsecond=0) 
 
-	ing_statement = "SELECT ingredient_id FROM NutritionLog WHERE (user_id = " + str(userID) + ") "
+	ing_statement = "SELECT ingredient_id, ingredient_amount FROM NutritionLog WHERE (user_id = " + str(userID) + ") "
 	ing_statement = ing_statement + "AND (log_date >= '" + str(date) + "') "
 	ing_statement = ing_statement + "AND (log_date < '" + str(tomorrow) + "') "
 	ing_statement = ing_statement + "AND (ingredient_id IS NOT NULL );"
 
 	cur.execute(ing_statement)
-	ing_ids = cur.fetchall()
+	ing_ids = cur.fetchall() #get all ingreienedt ids eate
 
 
 	rec_statement = "SELECT recipe_id FROM NutritionLog WHERE (user_id = " + str(userID) + ") "
@@ -102,12 +102,34 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	rec_statement = rec_statement  + "AND (recipe_id IS NOT NULL );"
 
 	cur.execute(rec_statement)
-	rec_ids = cur.fetchall()
+	rec_ids = cur.fetchall() # get all recipy ids eaten
 
+	
+
+	ingds = list() # get data for all ingriendens eaten
+	#entry format in ingreinents[protein, fat, carb, servingsize, amount eaten, id]
 	for row in ing_ids:
 		ID = row[0]
-		print ID 
-		print type(ID)
+		amount = row[1]
+		statement = "SELECT ingredient_protien, ingredient_fat, ingredient_carbs, ingredient_serving_size FROM Ingredients WHERE (ingredient_id = " + str(ID) + ");"
+		cur.execute(statement)
+		temp = list(cur.fetchone())
+		temp.append(amount)
+		temp.append(ID)
+	
+		ingds.append(temp) # add all data to list of all ingriedents eaten
+
+
+	recs = list() #get all recipies eaten
+	for row in rec_ids:
+		ID = row[0] 
+		statement = "SELECT recipe_protein, recipe_fat, recipe_carbs  FROM Recipes WHERE (recipe_id = " + str(ID) + ");"
+		cur.execute(statement)
+		temp = list(cur.fetchone())
+		temp.append(ID)
+		recs.append(temp)
+
+	print recs
 
 
 
@@ -116,11 +138,10 @@ def get_macro_day_total(userID, date): #date must be a datetime
 
 	p_statement = "SELECT SUM(Quantity) AS TotalItemsOrdered FROM OrderDetails WHERE OrderID = 10248;"
 
-	protein = 0
-	fat = 0
-	carb = 0
 
-
+	protein = float()
+	fat = float()
+	carb = float()
 
 	cur.close()
 	db.close()
