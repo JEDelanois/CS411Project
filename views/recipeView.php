@@ -10,8 +10,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<?php
 
-	<title>Business Casual - Start Bootstrap Theme</title>
+	$content = file_get_contents("http://abujaba2.web.engr.illinois.edu/cs411project/api/getRecipe.php?recipe_id=".$_GET['id'], true);
+	$array = json_decode($content);
+
+/*
+	echo '<pre>';
+	print_r($array);
+	echo '</pre>';
+*/
+	echo '<title>'.$array->results[0]->recipe_name.'</title>';
+	?>
+
 
 	<!-- Bootstrap Core CSS -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -32,10 +43,7 @@
 	<![endif]-->
 
 </head>
-<?php
 
-
-?>
 <body>
 
 <div class="brand">Not Important</div>
@@ -83,7 +91,7 @@
 
 
 	<?php
-	$content = file_get_contents("http://abujaba2.web.engr.illinois.edu/cs411project/api/getRecipe.php?limit=30&&page=1", true);
+	$content = file_get_contents("http://abujaba2.web.engr.illinois.edu/cs411project/api/getRecipe.php?recipe_id=".$_GET['id'], true);
 	$array = json_decode($content);
 	/*
         echo '<pre>';
@@ -126,49 +134,32 @@
 				<div id="content">
 					<div>
 						<div>
-							<h3>This is just a place holder, so you can see what the site would look like.</h3>
-							<p>
-								This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text. You can remove any link to our website from this website template, you&#39;re free to use this website template without linking back to us. If you&#39;re having problems editing this website template, then don&#39;t hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forums/">Forums</a>.
-							</p>
-							<a href="index.html"><img src="images/pork-barbeque.jpg" alt="Image"></a>
+							<?php
+								echo '<h1>'.$array->results[0]->recipe_name.'</h1>';
+
+							echo '<img src="http://abujaba2.web.engr.illinois.edu/cs411project/'.$array->results[0]->recipe_image.'" alt="">';
+						?>
 							<h5>INGREDIENTS</h5>
 							<ol class="ingredients">
-								<li>
-									10 grms This is just a place holder
-								</li>
-								<li>
-									5 slices This is just a place holder
-								</li>
-								<li>
-									12 pcs. This is just a place holder
-								</li>
-								<li>
-									1 liter This is just a place holder
-								</li>
-								<li>
-									3/4 cup This is just a place holder
-								</li>
-								<li>
-									1/4 cup This is just a place holder
-								</li>
+								<?php
+								foreach($array->results[0]->ingredients as $ingredient){
+								echo '<li>';
+								echo $ingredient->ingredient_text;
+								echo '</li>';
+								}
+								?>
+
+
 							</ol>
 							<h5>DIRECTIONS</h5>
 							<ol class="directions">
-								<li>
-									You can remove any link to our website from this website template.
-								</li>
-								<li>
-									You&#39;re free to use this website template without linking back to us.
-								</li>
-								<li>
-									This is just a place holder, so you can see what the site would look like.
-								</li>
-								<li>
-									You can remove any link to our website from this website template.
-								</li>
-								<li>
-									You&#39;re free to use this website template without linking back to us.
-								</li>
+								<?php
+								foreach($array->results[0]->directions as $direction) {
+									echo '<li>';
+									echo $direction;
+									echo '</li>';
+								}
+									?>
 							</ol>
 						</div>
 					</div>
@@ -179,6 +170,7 @@
 		<div>
 
 			<div>
+				<!---
 				<h3>Cooking Video</h3>
 				<a href="videos.html"><img src="images/cooking-video.png" alt="Image"></a>
 				<span>Vegetable &amp; Rice Topping</span>
@@ -234,6 +226,7 @@
 				<a href="http://freewebsitetemplates.com/go/flickr/" target="_blank" id="flickr">Flickr</a>
 				<a href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" id="googleplus">Google&#43;</a>
 			</div>
+			--->
 
 		</br>
 		</br>
