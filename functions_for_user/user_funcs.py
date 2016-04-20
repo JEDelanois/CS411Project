@@ -120,7 +120,7 @@ def get_macro_day_total(userID, date): #date must be a datetime
 		ingds.append(temp) # add all data to list of all ingriedents eaten
 
 
-	recs = list() #get all recipies eaten
+	recs = list() #get all recipies eaten recs[protein, fat, carb, id]
 	for row in rec_ids:
 		ID = row[0] 
 		statement = "SELECT recipe_protein, recipe_fat, recipe_carbs  FROM Recipes WHERE (recipe_id = " + str(ID) + ");"
@@ -129,34 +129,42 @@ def get_macro_day_total(userID, date): #date must be a datetime
 		temp.append(ID)
 		recs.append(temp)
 
+
+	protein = float(0)
+	fat = float(0)
+	carb = float(0)
+
+	#add up all food
+	for row in ingds:
+		protein = protein + row[0]
+		fat = fat + row[1]
+		carb = carb + row[2]
+
+
+	for row in recs:
+		protein = protein + row[0]
+		fat = fat + row[1]
+		carb = carb + row[2]
+
+
+	print ingds
 	print recs
-
-
-
-	 
-
-
-	p_statement = "SELECT SUM(Quantity) AS TotalItemsOrdered FROM OrderDetails WHERE OrderID = 10248;"
-
-
-	protein = float()
-	fat = float()
-	carb = float()
-
+	print ""
+	print[protein, fat, carb]
 	cur.close()
 	db.close()
 	return [protein, fat, carb]
 
+#all recomendations FIT MACROS and additional min and max restrictions
 
 
+#tests
 cur = get_db().cursor()
 temp = UserInfo(46, cur)
 
 
 date = datetime.datetime.now()
 date = date.replace(year=1,month=1,day=1,hour=0, minute=0, second=0, microsecond=0)
-print date
-
 
 get_macro_day_total(temp.id, date)
 
