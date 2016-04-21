@@ -162,9 +162,6 @@ def suggest_rec_by_macros(userID):
 	return suggest_rec_by_value(1, remain[0],1, remain[1], 2, remain[2])
 
 
-#check for empty sql returns in prev function
-#add calorie thing maybe
-#add
 def suggest_rec_by_value(min_p, max_p, min_f, max_f, min_c, max_c):
 	db = get_db()
 	cur = db.cursor()
@@ -186,16 +183,6 @@ def suggest_rec_by_value(min_p, max_p, min_f, max_f, min_c, max_c):
 
 
 
-#tests
-cur = get_db().cursor()
-temp = UserInfo(46, cur)
 
-#print suggest_rec_by_macros(temp.id)
-#date = datetime.datetime.now()
-#date = date.replace(year=1,month=1,day=1,hour=0, minute=0, second=0, microsecond=0)
-
-#get_macro_day_total(temp.id, date)
-
-#suggest_rec_by_value(20, 100, 10, 100, 10, 100)
 
 
