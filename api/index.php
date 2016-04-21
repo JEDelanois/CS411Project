@@ -121,3 +121,12 @@ Note: if no arguments are passed then all the the recipes are returned.<br>
 <h2>Returns</h2>
 On success returns the recipe depending on the arguments. On faliure returns null with an error.
 </p>
+<h1>Get Number of Elements</h1>
+<a href="getNumElements.php">getNumElements</a>
+<p>
+http://abujaba2.web.engr.illinois.edu/cs411project/api/getNumElements.php?table_name=recipes
+<h2>Arguments</h2>
+table_name (required): the name of the table you want the count of<br>
+<h2>Returns</h2>
+On success returns the number of elements in the table. On faliure returns null with an error.
+</p>

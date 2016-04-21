@@ -333,4 +333,17 @@ class DatabaseConnection {
 
         return $directions;
     }
+
+    public function getNumElements($tableName){
+        $sqlQuery = "SELECT Count(*) FROM $tableName";
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        $arr = $STH->fetchAll();
+
+        if($arr)
+            return $arr[0][0];
+        else
+            return NULL;
+
+    }
 }
