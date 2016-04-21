@@ -44,7 +44,8 @@ while output is not None:
  	i = i + 1
  	if (i % 100) == 0:
  		print i
-
+ 		
+db.commit()
 cursor.close()
 db.close()
 

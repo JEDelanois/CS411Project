@@ -88,6 +88,7 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	ing_statement = ing_statement + "AND (ingredient_id IS NOT NULL );"
 
 	cur.execute(ing_statement)
+	ing_ids = list()
 	if cur.rowcount != 0:
 		ing_ids = cur.fetchall() #get all ingreienedt ids eate
 
@@ -98,6 +99,7 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	rec_statement = rec_statement  + "AND (recipe_id IS NOT NULL );"
 
 	cur.execute(rec_statement)
+	rec_ids = list()
 	if cur.rowcount != 0:
 		rec_ids = cur.fetchall() # get all recipy ids eaten
 
@@ -150,9 +152,10 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	return [protein, fat, carb]
 
 
-def suggest_rec_by_macros(userID):
+def suggest_rec_by_macros(userID, date):
+
 	macros = get_target_macros(userID)
-	consumed = get_macro_day_total(userID, datetime.datetime.now())
+	consumed = get_macro_day_total(userID, date)
 	remain = list()
 	remain.append(macros[0] - consumed[0])
 	remain.append(macros[1] - consumed[1])
@@ -165,6 +168,7 @@ def suggest_rec_by_macros(userID):
 def suggest_rec_by_value(min_p, max_p, min_f, max_f, min_c, max_c):
 	db = get_db()
 	cur = db.cursor()
+			
 
 	statement = "SELECT recipe_id FROM Recipes WHERE (recipe_fat <= %s ) AND (recipe_carbs <= %s) AND (recipe_protein <= %s) AND (recipe_fat  >= %s) AND (recipe_carbs >= %s ) AND (recipe_protein >= %s);"
 
