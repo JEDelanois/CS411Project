@@ -8,6 +8,23 @@
         <h4 class="modal-title">Sign In / Sign Up</h4>
       </div>
       <div class="modal-body">
+
+        <?php
+
+            // check for errors
+if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_error"]) > 0){
+    $numErrors = intval(htmlentities($_GET["login_registration_error"]));
+    echo '<div class="alert alert-danger" role="alert">';
+    for($i = 1; $i <= $numErrors; $i++){
+        echo "<p>" . htmlentities($_GET["login_registration_error_$i"]) . "</p>";
+    }
+    echo '</div>';
+
+}
+
+        ?>
+
+
         <h4>Sign In</h4>
         <?php require '../forms.view/login.form.php'; ?>
         <hr>

@@ -1,14 +1,20 @@
-<form class="form-horizontal">
+<form class="form-horizontal" id="loginForm" method="post" action="../inc/loginUserProcess.php">
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <label for="loginFormEmailTextField" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+      <input type="email" class="form-control" id="loginFormEmailTextField" name="loginFormEmailTextField" placeholder="Email">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    <label for="PasswordTextField" class="col-sm-2 control-label">Password</label>
+    <div class="col-lg-6">
+        <div class="input-group">
+          <input type="password" class="form-control" aria-label="password" name="passwordTextField" id="passwordTextField">
+          <span class="input-group-addon">
+            <input type="checkbox" aria-label="show-password" name="showPasswordCheckbox" id="showPasswordCheckbox">
+            Show Password
+          </span>
+        </div><!-- /input-group -->
     </div>
   </div>
   <div class="form-group">

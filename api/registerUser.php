@@ -41,7 +41,7 @@ if(isset($_GET["email"]) && isset($_GET["password"]) &&
         $errors["password_error"] = "Password is required";
     if(!isset($_GET["firstname"]))
         $errors["firstname_error"] = "Firstname is required";
-    if(!isset($_GET["lastname_error"]))
+    if(!isset($_GET["lastname"]))
         $errors["lastname_error"] = "Lastname is required";
     $userObj["errors"] = $errors;
     echo json_encode($userObj);

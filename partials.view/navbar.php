@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <?php 
+        <?php
           $currFolderName = getDirectoryFromURL($_SERVER["REQUEST_URI"]);
         ?>
         <li class="<?php if($currFolderName == "recipes") echo 'active'; ?>"><a href="../recipes">Recipes <span class="sr-only">(current)</span></a></li>
@@ -39,7 +39,7 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signInUp">Sign in / Sign Up</button>
+        <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signInUp" id="signInUpBtn">Sign in / Sign Up</button>
         <!-- <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -56,4 +56,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<?php require '../partials.view/SignInUpPopup.view.php'; ?>
+<?php require '../partials.view/SignInUpPopup.view.php';
+if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_error"]) > 0): ?>
+
+    <script type="text/javascript">
+        $("button#signInUpBtn").trigger("click");
+    </script>
+
+<?php endif; ?>
