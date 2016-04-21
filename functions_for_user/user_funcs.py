@@ -1,5 +1,6 @@
 import MySQLdb as mdb
 import datetime
+from random import randint
 
 class UserInfo:
 	def __init__(self, userId, cursor):
@@ -15,10 +16,7 @@ class UserInfo:
 		self.targetweight = atts[8]
 		self.height = atts[9]
 		self.sex = atts[10]
-		self.diet_type = atts[11]
-
 		
-	
 
 
 def get_db():
@@ -28,23 +26,21 @@ def get_db():
 
 
 
-def get_macros(userID):
+def get_target_macros(userID):
 	db = get_db()
 	cur = db.cursor()
 	user = UserInfo(userID, cur)
 
-	#only otpions for diet gain muscle , lose weight, maintain
-	#SHOULD I MAKE THIS BASED ON GOAL WEIGHT INSTEAD?????????
 	protein = 0
 	fat = 0
 	carb = 0
 
-	if user.diet_type == "gain muscle":
+	if user.targetweight > user.weight:
 		protein = user.targetweight 
 		fat = (user.targetweight / 2) - 2.5
 		carb = (user.targetweight * 2.5) - 3
 
-	elif user.diet_type == "lose weight":
+	elif user.targetweight < user.weight:
 		protein = user.targetweight
 		fat = (user.targetweight / 2) - 2.5
 		carb = user.targetweight
@@ -92,7 +88,8 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	ing_statement = ing_statement + "AND (ingredient_id IS NOT NULL );"
 
 	cur.execute(ing_statement)
-	ing_ids = cur.fetchall() #get all ingreienedt ids eate
+	if cur.rowcount != 0:
+		ing_ids = cur.fetchall() #get all ingreienedt ids eate
 
 
 	rec_statement = "SELECT recipe_id FROM NutritionLog WHERE (user_id = " + str(userID) + ") "
@@ -101,7 +98,8 @@ def get_macro_day_total(userID, date): #date must be a datetime
 	rec_statement = rec_statement  + "AND (recipe_id IS NOT NULL );"
 
 	cur.execute(rec_statement)
-	rec_ids = cur.fetchall() # get all recipy ids eaten
+	if cur.rowcount != 0:
+		rec_ids = cur.fetchall() # get all recipy ids eaten
 
 	
 
@@ -146,14 +144,45 @@ def get_macro_day_total(userID, date): #date must be a datetime
 		carb = carb + row[2]
 
 
-	print ingds
-	print recs
-	print ""
-	print[protein, fat, carb]
 	cur.close()
 	db.close()
+
 	return [protein, fat, carb]
 
+
+def suggest_rec_by_macros(userID):
+	macros = get_target_macros(userID)
+	consumed = get_macro_day_total(userID, datetime.datetime.now())
+	remain = list()
+	remain.append(macros[0] - consumed[0])
+	remain.append(macros[1] - consumed[1])
+	remain.append(macros[2] - consumed[2])
+
+
+	return suggest_rec_by_value(1, remain[0],1, remain[1], 2, remain[2])
+
+
+#check for empty sql returns in prev function
+#add calorie thing maybe
+#add
+def suggest_rec_by_value(min_p, max_p, min_f, max_f, min_c, max_c):
+	db = get_db()
+	cur = db.cursor()
+
+	statement = "SELECT recipe_id FROM Recipes WHERE (recipe_fat <= %s ) AND (recipe_carbs <= %s) AND (recipe_protein <= %s) AND (recipe_fat  >= %s) AND (recipe_carbs >= %s ) AND (recipe_protein >= %s);"
+
+	cur.execute(statement, [max_f, max_c, max_p, min_f, min_c, min_p])
+	if cur.rowcount == 0:
+		return None 
+	
+	results = cur.fetchall()
+
+	cur.close()
+	db.close()
+
+	recRow = results[randint( 0, (len(results) - 1))]
+
+	return recRow[0]
 
 
 
@@ -161,10 +190,12 @@ def get_macro_day_total(userID, date): #date must be a datetime
 cur = get_db().cursor()
 temp = UserInfo(46, cur)
 
+#print suggest_rec_by_macros(temp.id)
+#date = datetime.datetime.now()
+#date = date.replace(year=1,month=1,day=1,hour=0, minute=0, second=0, microsecond=0)
 
-date = datetime.datetime.now()
-date = date.replace(year=1,month=1,day=1,hour=0, minute=0, second=0, microsecond=0)
+#get_macro_day_total(temp.id, date)
 
-get_macro_day_total(temp.id, date)
+#suggest_rec_by_value(20, 100, 10, 100, 10, 100)
 
 
