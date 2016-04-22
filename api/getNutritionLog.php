@@ -9,9 +9,6 @@ $errors = [];
 
 if(isset($_GET["user_id"])){
     $user_id = htmlentities($_GET["user_id"]);
-    if(!isset($_GET["date"])){
-        $errors["date_error"] = "Date is required";
-    } else {
         if(!intval($user_id)){
             $errors["user_id_error"] = "User ID needs to be an int";
         } else {
@@ -29,7 +26,6 @@ if(isset($_GET["user_id"])){
                     ]);
             }
         }
-    }
 } else
     $errors["user_id_erros"] = "User ID is required";
 
