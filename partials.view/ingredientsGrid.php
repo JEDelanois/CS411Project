@@ -4,7 +4,10 @@
   else
     $page = 1;
   	$elementsPerPage = 50;
-	$content = file_get_contents(API_URL . "ingredients.php?limit=$elementsPerPage&&page=$page", true);
+    if(isset($_GET["s"])){
+	    $content = file_get_contents(API_URL . "ingredients.php?limit=$elementsPerPage&&page=$page&&search=" . htmlentities($_GET["s"]), true);
+    } else
+        $content = file_get_contents(API_URL . "ingredients.php?limit=$elementsPerPage&&page=$page", true);
  	$array = json_decode($content, true);
  	$numElements = $array["num_results"];
  	$array = $array["results"];

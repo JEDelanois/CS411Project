@@ -4,10 +4,12 @@ require '../config.php';
 require 'functions.php';
 if(isset($_GET["searchType"])){
     $folder_name = getDirectoryFromURL($_SERVER["REQUEST_URI"]);
-    if($_GET["searchType"] == "ingredients" && $folder_name != "ingredients"){
-        header("Location: ../ingredients/?searchType='ingredients'&s=" . isset($_GET["s"]) ? htmlentities($_GET["s"]) : '');
-    } else if(getDirectoryFromURL($_SERVER["REQUEST_URI"]) != "recipes")
-    header("Location: ../recipes/?searchType=recipes&s=" . htmlentities($_GET["s"]));
+    $searchType = htmlentities($_GET["searchType"]);
+    if($searchType == "ingredients" && $folder_name != "ingredients"){
+        header("Location: ../ingredients/?searchType=ingredients&&s=" . htmlentities($_GET["s"]));
+    } else if($folder_name != "recipes"){
+    header("Location: ../recipes/?searchType=recipes&&s=" . htmlentities($_GET["s"]));
+    }
 }
 
 ?>

@@ -44,7 +44,8 @@
       </div><!-- /btn-group -->
     </div><!-- /input-group -->
         <!--<button type="submit" class="btn btn-default" hidden="true"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>-->
-<input type="submit" hidden="true" id="searchSubmit" value="recipes" name="searchType">
+<input type="text" hidden="true" value="recipes"  name="searchType" id="searchSubmit">
+<input type="submit" hidden="true">
       </form>
       <ul class="nav navbar-nav navbar-right">
         <?php if(is_logged_in()): ?>

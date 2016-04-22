@@ -5,10 +5,7 @@
     $page = 1;
     $elementsPerPage = 30;
     if(isset($_GET["s"])){
-        if(isset($_GET["searchType"]) && $_GET["searchType"] == "ingredients")
-            echo '';
-        else
-	        $content = file_get_contents(API_URL . "getRecipe.php?search=" . htmlentities($_GET["s"]) . "&&limit=$elementsPerPage&&page=$page", true);
+	    $content = file_get_contents(API_URL . "getRecipe.php?search=" . htmlentities($_GET["s"]) . "&&limit=$elementsPerPage&&page=$page", true);
     } else
         $content = file_get_contents(API_URL . "getRecipe.php?limit=$elementsPerPage&&page=$page", true);
  	$array = json_decode($content, true);
