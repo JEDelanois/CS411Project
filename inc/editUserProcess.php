@@ -37,8 +37,8 @@ if(isset($_POST)){
 		$db->changeUserData($userInfo, true);
 	} else {
 		$db->changeUserData($currentUser, false);
-		// die();
 	}
+	setCurrentUser($currentUser);
 }
 
 header('Location: ' . strtok($_SERVER['HTTP_REFERER'], "?"));
