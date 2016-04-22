@@ -2,7 +2,7 @@
 // define("CONFIG_FILE_DIR", "../");
 // require CONFIG_FILE_DIR . 'dbconfig.php';
 // require 'User.php';
-
+require '../inc/generateRandomRecipe.php';
 class DatabaseConnection {
     private $_db = null;
     private $_dbhostname;
@@ -75,8 +75,7 @@ class DatabaseConnection {
         $STH->execute([
             ':email'	=>	$email
             ]);
-        $STH->setFetchMode(PDO::FETCH_CLASS, "User");
-        return $STH->fetch(PDO::FETCH_OBJ);
+        return $STH->fetch();
     }
 
     public function getUserFromID($id){
@@ -85,8 +84,8 @@ class DatabaseConnection {
         $STH->execute([
             ':id'	=>	$id
             ]);
-        $STH->setFetchMode(PDO::FETCH_CLASS, "User");
-        return $STH->fetch(PDO::FETCH_OBJ);
+        $STH->setFetchMode();
+        return $STH->fetch();
     }
 
     public function getUsersFromTable(){
@@ -359,4 +358,110 @@ class DatabaseConnection {
             return NULL;
 
     }
+
+    public function suggest_rec_by_value($min_p, $max_p, $min_f, $max_f, $min_c, $max_c)
+    {
+//        $db= new DatabaseConnection();
+
+        $ingSQL="SELECT recipe_id FROM Recipes WHERE (recipe_fat <= :max_f) AND (recipe_carbs <= :max_c) AND (recipe_protein <= :max_p) AND (recipe_fat  >= :min_f) AND (recipe_carbs >= :min_c ) AND (recipe_protein >= :min_p)";
+
+        $STH=$this->_db->prepare($ingSQL);
+        $STH->execute([
+            ':max_f'   =>  $max_f,
+            ':max_c' =>  $max_c,
+            ':max_p' => $max_p,
+            ':min_f' => $min_f,
+            ':min_c' => $min_c,
+            ':min_p' => $min_p,
+            ]);
+        $results=$STH->fetchAll();
+
+
+        if(count($results) == 0)
+            return NULL;
+        $recRow = $results[rand(0, count($results)-1)];
+        return $recRow[0];
+    }
+
+
+public function get_macro_day_total($id, $date)
+{
+    $user = new UserInfo($id);
+    $date = $date->setTime(0, 0, 0);
+    $tomorrow=$date;
+    date_modify($tomorrow, '+1 day');
+    //set tommorw= to the day after date. !!!!!!!!!!!!
+
+    $ingSQL="SELECT ingredient_id, ingredient_amount FROM NutritionLog WHERE (user_id = :id)";
+    $ingSQL .= " AND (log_date>= :date)";
+ //   $ingSQL .= " AND (log_date < :tomorrow)";
+    $ingSQL .= " AND (ingredient_id IS NOT NULL);";
+
+    $STH=$this->_db->prepare($ingSQL);
+    $STH->execute([
+        ':id'   =>  $id,
+        ':date' => date_format($date, "Y-m-d"),
+        // ':tomorrow' => date_format($tomorrow, "Y-m-d"),
+        ]);
+    $ingredientInfo=$STH->fetchAll();
+
+
+    $ingSQL="SELECT recipe_id FROM NutritionLog WHERE (user_id = :id)";
+    $ingSQL .= " AND (log_date >= :date)";
+ //   $ingSQL .= " AND (log_date < :tomorrow)";
+ /*   $ingSQL .= " AND (recipe_id IS NOT NULL);";*/
+
+    $STH=$this->_db->prepare($ingSQL);
+    $STH->execute([
+        ':id'   =>  $id,
+        ':date' =>  date_format($date, "Y-m-d"),
+// ':tomorrow' => date_format($tomorrow, "Y-m-d"),
+        ]);
+    $recipeInfo=$STH->fetchALL();
+
+
+    $ingrTotalProtein = 0; $ingrTotalFat = 0; $ingrTotalCarbs = 0;
+
+    foreach($ingredientInfo as $ingr){
+       $sqlStatement = "SELECT ingredient_protien, ingredient_fat, ingredient_carbs, ingredient_serving_size FROM Ingredients WHERE ingredient_id = :id";
+
+    $STH=$this->_db->prepare($sqlStatement);
+    $STH->execute([
+        ':id'   =>  $ingr["ingredient_id"]
+        ]);
+    $singleIngrInfo = $STH->fetchAll();
+
+        if(count($singleIngrInfo) > 0){
+            $singleIngrInfo = $singleIngrInfo[0];
+            $ingrTotalProtein += $singleIngrInfo["ingredient_protien"];
+            $ingrTotalFat += $singleIngrInfo["ingredient_fat"];
+            $ingrTotalCarbs += $singleIngrInfo["ingredient_carbs"];
+        }
+    }
+
+    foreach($recipeInfo as $recipe){
+        if(!$recipe["recipe_id"])
+            continue;
+       $sqlStatement = "SELECT `recipe_protein`, `recipe_fat`, `recipe_carbs` FROM `Recipes` WHERE recipe_id = :id";
+
+
+    $STH=$this->_db->prepare($sqlStatement);
+    $STH->execute([
+        ':id'   =>  $recipe["recipe_id"]
+        ]);
+    $singleIngrInfo = $STH->fetchAll();
+
+        if(count($singleIngrInfo) > 0){
+            $singleIngrInfo = $singleIngrInfo[0];
+            $ingrTotalProtein += $singleIngrInfo["recipe_protein"];
+            $ingrTotalFat += $singleIngrInfo["recipe_fat"];
+            $ingrTotalCarbs += $singleIngrInfo["recipe_carbs"];
+        }
+    }
+
+}
+
+
+
+
 }
