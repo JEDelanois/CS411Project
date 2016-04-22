@@ -32,11 +32,19 @@
           </ul>
         </li>-->
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      <form class="navbar-form navbar-left" role="search" method="get" action="">
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="..." name="s">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></button>
+        <ul id="searchTypeDropdown" class="dropdown-menu dropdown-menu-right">
+          <li><a href="#" onClick="changeSearchType('recipes')">Recipes</a></li>
+          <li><a href="#" onClick="changeSearchType('ingredients')">Ingredients</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+        <!--<button type="submit" class="btn btn-default" hidden="true"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>-->
+<input type="submit" hidden="true" id="searchSubmit" value="recipes" name="searchType">
       </form>
       <ul class="nav navbar-nav navbar-right">
         <?php if(is_logged_in()): ?>
@@ -96,3 +104,12 @@ if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_
     </script>
 
 <?php endif; ?>
+
+
+    <script type="text/javascript">
+
+    function changeSearchType(newValue){
+        $("input#searchSubmit").prop('value', newValue);
+    }
+
+    </script>

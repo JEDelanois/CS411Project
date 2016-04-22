@@ -161,8 +161,29 @@ class DatabaseConnection {
         return $STH->fetchAll();
     }
 
-    public function getIngredientsSearchString($string){
+    public function getIngredientsSearchString($string, $limit = 30, $page = 1){
+        if($string == NULL || $string == "")
+            return $this->getIngredients(NULL, $limit, $page);
+        if( (isset($page) && $page < 1) || (isset($limit) && $limit < 0))
+            return NULL;
         $sqlQuery = "SELECT * FROM Ingredients WHERE ingredient_name LIKE '%$string%'";
+        if($limit) {
+            $sqlQuery .= " LIMIT " . ($page - 1) * $limit . ", " . $limit;
+        }
+        $STH = $this->_db->prepare($sqlQuery);
+        $STH->execute();
+        return $STH->fetchAll();
+    }
+
+    public function getRecipesSearchString($string, $limit = 30, $page = 1){
+        if($string == NULL || $string == "")
+            return $this->getRecipes(NULL, $limit, $page);
+        if( (isset($page) && $page < 1) || (isset($limit) && $limit < 0))
+            return NULL;
+        $sqlQuery = "SELECT * FROM Recipes WHERE recipe_name LIKE '%$string%'";
+        if($limit) {
+            $sqlQuery .= " LIMIT " . ($page - 1) * $limit . ", " . $limit;
+        }
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute();
         return $STH->fetchAll();
