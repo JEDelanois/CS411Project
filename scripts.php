@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
 <?php
 require 'dbconfig.php';
 require 'classes/Database.php';
@@ -156,30 +148,10 @@ public suggest_rec_by_value($min_p, $max_p, $min_f, $max_f, $min_c, $max_c)
         ':min_p' => $min_p,
         ]);
     $results=$STH->fetchALL();
-
     if(results->rowCount==0)
         return None;
-    
     $recRow=results[rand(0, count($result)-1];
     return $recRow[0];
-
- 
 }
-
-
-
-
-
 ?>
-
-
-
-
-</body>
-</html>
-
-
-
-
-
 
