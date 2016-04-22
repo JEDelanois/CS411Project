@@ -218,6 +218,7 @@ class DatabaseConnection {
             if($timeOfTheDay)
                 $sqlQuery .= " AND log_time_of_the_day = '$timeOfTheDay'";
         }
+        $sqlQuery .= " ORDER BY log_date";
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute();
         return $STH->fetchAll();

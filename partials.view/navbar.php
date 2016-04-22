@@ -45,6 +45,9 @@
             <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="dashboardBtn" id="dashboardBtn">Dashboard</button>
         </a>
         <?php endif; ?>
+        <a href="../nutritionLog">
+            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="nutritionLog" id="profileBtn">View Nutrition Log</button>
+        </a>
         <a href="../profile">
             <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="profileBtn" id="profileBtn">Profile</button>
         </a>
