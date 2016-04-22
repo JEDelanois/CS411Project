@@ -51,7 +51,6 @@
 					<th>Cholesterol (mg)</th>
 					<th>Sodium (mg)</th>
 					<th>Sugar (g)</th>
-					<th>
 					</tr>
 					</thead>
 					<tbody>
@@ -68,15 +67,16 @@
 					<?php endif; ?>
 					</td>
 					<td>
-					<?php if(isset($nl["ingredient_id"])): ?>
-						<a href="<?= '../ingredient/?id=' . $nl["ingredient_id"]?>"><?= getIngredientFromAPI($nl["ingredient_id"]) ?></a>
-					<?php else: ?>
-						N/A
-					<?php endif; ?>
+					<?php if(isset($nl["ingredient_id"])):
+						$ingredient = getIngredientFromAPI($nl["ingredient_id"]);
+						echo $ingredient["ingredient_name"];
+					else:
+						echo 'N/A';
+					endif; ?>
 					</td>
 					<td>
 					<?php if(isset($nl["ingredient_amount"])): ?>
-						<?= getIngredientFromAPI($nl["ingredient_amount"]) ?>
+						<?= $ingredient["ingredient_amount"] ?>
 					<?php else: ?>
 						N/A
 					<?php endif; ?>

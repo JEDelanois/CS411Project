@@ -26,6 +26,9 @@
   	<th>Sugar</th>
   	<th>Carbs</th>
   	<th>Fat</th>
+  	<?php if (is_logged_in()): ?>
+  	<th>Add to Log</th>
+  <?php endif; ?>
   	</thead>
   	<tbody>
   		<?php foreach ($array as $ing): ?>
@@ -36,6 +39,14 @@
   				<td><?= $ing["ingredient_sugar"] ?></td>
   				<td><?= $ing["ingredient_carbs"] ?></td>
   				<td><?= $ing["ingredient_fat"] ?></td>
+
+  				<?php if (is_logged_in()): ?>
+  				<td class="text-center">
+  					<a onClick="addToNutritionLog(<?= $currentUser["user_id"] ?>, <?= $ing['ingredient_id'] ?>)" >
+  						<span class="glyphicon glyphicon-plus"></span>
+  					</a>
+  				</td>
+  				<?php endif ?>
   			</tr>
   		<?php endforeach; ?>
   	</tbody>
@@ -59,3 +70,15 @@
 </nav>
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	function addToNutritionLog(user_id, ingredient_id){
+		var APIURL = '<?= API_URL ?>';
+		var utc = new Date().toJSON().slice(0,10);
+		var url = APIURL + "addNutritionLog.php?user_id" + user_id + "&&ingredient_id=" + ingredient_id + "&&date=" + utc;
+		jQuery.get(url, function(){
+
+		});
+	}
+
+</script>
