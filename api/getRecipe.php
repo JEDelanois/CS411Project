@@ -7,6 +7,11 @@ header("Content-Type: application/json");
 $db = new DatabaseConnection();
 $errors = [];
 
+if(isset($_GET["search"])){
+    $search = htmlentities($_GET["search"]);
+} else
+    $search = NULL;
+
 if(isset($_GET["recipe_id"])){
     $recipe_id = htmlentities($_GET["recipe_id"]);
     if(!intval($recipe_id)){
@@ -25,7 +30,10 @@ if(isset($_GET["page"]))
 else
     $page = 1;
 
-$arr = $db->getRecipe($recipe_id, (isset($limit)) ? $limit : NULL, (isset($page) ? $page : 0));
+if($search)
+    $arr = $db->getRecipesSearchString($search, (isset($limit)) ? $limit : NULL, (isset($page) ? $page : 0));
+else
+    $arr = $db->getRecipe($recipe_id, (isset($limit)) ? $limit : NULL, (isset($page) ? $page : 0));
 
 echo json_encode([
     'num_results'       =>      count($arr),
