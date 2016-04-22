@@ -14,6 +14,7 @@
 			$currentDate = NULL;
 			$totalCalories = 0; $totalFat = 0; $totalCarbs = 0; $totalProtein = 0; $totalChol = 0;
 			$totalSodium = 0; $totalSugar = 0;
+            if(count($nutritionLog) > 0):
 			foreach($nutritionLog as $nl){
 				if($currentDate == NULL || $currentDate != $nl["log_date"]):
 					if($currentDate != NULL): ?>
@@ -159,6 +160,9 @@
 			</tr>
 			</tbody>
 			</table>
+        <?php else: // if the count is zero ?>
+                <h2> Your log is empty </h2>
+        <?php endif; ?>
 		<?php else: ?>
 		<h2>You are not logged In</h2>
 		<script type="text/javascript">
