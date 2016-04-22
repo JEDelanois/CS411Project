@@ -19,6 +19,13 @@
 
 
 <div class="panel panel-default center-block" id="ingredientsGrid" style="width: 80%">
+<?php
+  if(isset($_GET["s"])){
+      echo '<div class="text-center">';
+        echo '<h2>Search results of ' . htmlentities($_GET["s"]) . '</h2>';
+      echo '</div>';
+  }
+?>
   <div class="panel-body">
   	<h1 style="text-align: center">Ingredients</h1><br>
   	<table class="table">

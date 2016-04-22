@@ -50,7 +50,7 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if(is_logged_in()): ?>
         <?php if(is_admin()): ?>
-        <a href="../dasboard">
+        <a href="../dashboard/index.php">
             <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="dashboardBtn" id="dashboardBtn">Dashboard</button>
         </a>
         <?php endif; ?>

@@ -19,6 +19,13 @@
  	$index = 0;
 ?>
 <div id="recipeGrid" class="center-box" style="width: 90%; margin:auto;">
+<?php
+  if(isset($_GET["s"])){
+      echo '<div class="text-center">';
+        echo '<h2>Search results of ' . htmlentities($_GET["s"]) . '</h2>';
+      echo '</div>';
+  }
+?>
 <?php for ($i=0; $i < $numRows; $i++): ?>
 <div class="row">
 	<?php for($j = 0; $j < 3; $j++):
