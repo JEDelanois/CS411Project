@@ -1,21 +1,46 @@
 <?php
-require '../dbconfig.php';
-require '../classes/Database.php';
-require '../libs/password.php';
+require '../config.php';
+require '../user_session.php';
+
 if(isset($_POST)){
 	// create an array to store the user information
-	$userInfo = [];
-	$userInfo["user_firstName"] = htmlentities($_POST["user_firstName"]);
-	$userInfo["user_lastName"] = htmlentities($_POST["user_lastName"]);
-	$userInfo["user_email"] = htmlentities($_POST["user_email"]);
-	$password = htmlentities($_POST["user_password"]);
-	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-	$userInfo["user_password"] = $hashedPassword;
-	$userInfo["user_role"] = "user";
+	$firstName = htmlentities($_POST["registrationFormFirstNameTextField"]);
+	$lastName = htmlentities($_POST["registrationFormLastNameTextField"]);
+	$email = htmlentities($_POST["registrationFormEmailTextField"]);
+    $password  = htmlentities($_POST["passwordTextField"]);
 
-	$db = new DatabaseConnection();
+    $url = API_URL . "registerUser.php?";
+/*
+    echo '<pre>';
+    print_r($userInfo);
+    echo '</pre>';*/
 
-	$db->insertUserIntoTable($userInfo);
+    if($firstName)
+        $url .= "firstname=$firstName&&";
+    if($lastName)
+        $url .= "lastname=$lastName&&";
+    if($email)
+        $url .= "email=$email&&";
+    if($password)
+        $url .= "password=$password";
 
-	header("Location: ../register.php");
+    $content = file_get_contents($url);
+
+    $result = json_decode($content, true);
+    $user = $result["results"];
+
+    if($user){
+        setCurrentUser($user);
+        header('Location: ' . strtok($_SERVER['HTTP_REFERER'], "?"));
+    } else {
+        $errString = "";
+        $errors = $result["errors"];
+        $count = 1;
+        foreach($errors as $error){
+            $errString .= "&&login_registration_error_$count=$error";
+            $count++;
+        }
+        $count--;
+        header('Location: ' . strtok($_SERVER['HTTP_REFERER'], "?") . "?login_registration_error=$count$errString");
+    }
 }

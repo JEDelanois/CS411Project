@@ -1,18 +1,33 @@
-<?php 
+<?php
 require '../user_session.php';
-require '../dbconfig.php';
-require "../classes/Database.php";
-require '../libs/password.php';
-$user_email = htmlentities($_POST["loginFormEmailTextField"]);
-$password = htmlentities($_POST["loginFormPasswordTextField"]);
+require '../config.php';
 
-$db = new DatabaseConnection();
-$exist = $db->checkEmailPasswordCombination($user_email, $password);
+if(isset($_POST)){
+    $user_email = htmlentities($_POST["loginFormEmailTextField"]);
+    $password = htmlentities($_POST["passwordTextField"]);
 
-if($exist){
-	$user = $db->getUserFromEmail($user_email);
-	setCurrentUser($user);
-	header("Location: ../index.php");
-} else {
-	header("Location: ../login.php?invalidUserCombination=false");
+    $str = API_URL . "loginUser.php?";
+
+    $user_email ? $str .= "email=$user_email&&" : "";
+    $password ? $str .= "password=$password" : "";
+
+    $content = file_get_contents($str);
+
+    $result = json_decode($content, true);
+    $user = $result["results"];
+
+    if($user){
+        setCurrentUser($user);
+        header('Location: ' . strtok($_SERVER['HTTP_REFERER'], "?"));
+    } else {
+        $errString = "";
+        $errors = $result["errors"];
+        $count = 1;
+        foreach($errors as $error){
+            $errString .= "&&login_registration_error_$count=$error";
+            $count++;
+        }
+        $count--;
+        header('Location: ' . strtok($_SERVER['HTTP_REFERER'], "?") . "?login_registration_error=$count$errString");
+    }
 }

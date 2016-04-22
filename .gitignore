@@ -1,3 +1,4 @@
 dbconfig.php
 credentials.py
 dataCrawler/ingredientsDataCrawler/output.txt
+images/recipeImages/*.*

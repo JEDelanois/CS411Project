@@ -2,7 +2,7 @@
 <a href="login.php">Login</a>
 <a href="dashboard/users.php">Dashboard</a>
 <br>
-<?php 
+<?php
 require 'dbconfig.php';
 require 'classes/Database.php';
 if($currentUser){
@@ -11,7 +11,7 @@ if($currentUser){
 } else {
 	echo 'not logged in <br>';
 }
-?> 
+?>
 
 <form method="get" action="">
 
@@ -20,13 +20,14 @@ if($currentUser){
 
 </form>
 
-<?php 
+<?php
 echo '<table>';
 $db = new DatabaseConnection();
 if(isset($_GET["s"]))
 	$ingredients = $db->getIngredientsSearchString($_GET["s"]);
 else
 	$ingredients = $db->getAllIngredients();
+
 echo '<tr>';
 echo '<td>Ingredient ID</td>';
 echo '<td>Ingredient Name</td>';
