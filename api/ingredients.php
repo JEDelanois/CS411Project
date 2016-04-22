@@ -22,7 +22,7 @@ if(isset($_GET["limit"]))
 else
 	$limit = 30;
 
-$results = $db->getAllIngredients($id, $page, $limit);
+$results = $db->getAllIngredients($id, $limit, $page);
 // $results = array_slice($results, 0, 30);
 $ingredients['num_results'] = count($results);
 $ingredients['results'] = $results;
