@@ -19,15 +19,15 @@
 				if($currentDate == NULL || $currentDate != $nl["log_date"]):
 					if($currentDate != NULL): ?>
 						<tr>
-						<th>Total</th>
-						<th></th>
-						<th><?= $totalCalories ?></th>
-						<th><?= $totalFat ?></th>
-						<th><?= $totalCarbs ?></th>
-						<th><?= $totalProtein ?></th>
-						<th><?= $totalChol ?></th>
-						<th><?= $totalSodium ?></th>
-						<th><?= $totalSugar ?></th>
+                            <th>Total</th>
+                            <th></th>
+                            <th><?= $totalCalories ?></th>
+                            <th><?= $totalFat ?></th>
+                            <th><?= $totalCarbs ?></th>
+                            <th><?= $totalProtein ?></th>
+                            <th><?= $totalChol ?></th>
+                            <th><?= $totalSodium ?></th>
+                            <th><?= $totalSugar ?></th>
 						</tr>
 						</tbody>
 						</table>
@@ -59,12 +59,16 @@
 						$recipe = getRecipeFromAPI($nl["recipe_id"]);
 						?>
 						<a href="<?= '../recipe/?id=' . $nl["recipe_id"]?>"><?= $recipe["recipe_name"] ?></a>
+                        <?php else:
+                            echo 'N/A'; ?>
 					<?php endif; ?>
 					</td>
 					<td>
 					<?php if(isset($nl["ingredient_id"])):
 						$ingredient = getIngredientFromAPI($nl["ingredient_id"]);
 						echo $ingredient["ingredient_name"];
+                    else:
+                        echo 'N/A';
 					endif; ?>
 					</td>
 					<?php /*<td>
@@ -144,8 +148,6 @@
 			<?php } ?>
 			<tr>
 			<th>Total</th>
-			<th></th>
-			<th></th>
 			<th></th>
 			<th><?= $totalCalories ?></th>
 			<th><?= $totalFat ?></th>
