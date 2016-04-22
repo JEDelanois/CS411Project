@@ -1,5 +1,6 @@
 <?php
 require '../config.php';
+require '../user_session.php';
 
 if(isset($_POST)){
 	// create an array to store the user information

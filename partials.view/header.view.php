@@ -1,3 +1,7 @@
+<?php
+require '../user_session.php';
+require '../config.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php require 'functions.php'; ?>
-<?php require('navbar.php'); ?>
-<?php require '../config.php'; ?>
+<?php
+require 'functions.php';
+require('navbar.php'); ?>
 <div class="container-fluid">

@@ -1,4 +1,4 @@
-<?php 
+<?php
   if(isset($_GET["page"]))
     $page = htmlentities($_GET["page"]);
   else
@@ -14,9 +14,11 @@
   $totalNumberOfElements = intval($totalNumberOfElements["result"]);
   $totalPages = $totalNumberOfElements / $elementsPerPage;
  	$index = 0;
-for ($i=0; $i < $numRows; $i++): ?>
+?>
+<div id="recipeGrid" class="center-box" style="width: 90%; margin:auto;">
+<?php for ($i=0; $i < $numRows; $i++): ?>
 <div class="row">
-	<?php for($j = 0; $j < 3; $j++): 
+	<?php for($j = 0; $j < 3; $j++):
 		$currRecipe = $array[$index++];
 		?>
   <div class="col-sm-6 col-md-4">
@@ -33,7 +35,7 @@ for ($i=0; $i < $numRows; $i++): ?>
             </tr>
           </thead>
           <tbody>
-            <tr> 
+            <tr>
               <td><?= getTimeString($currRecipe["recipe_prep_time"]); ?></td>
               <td><?= getTimeString($currRecipe["recipe_cook_time"]); ?></td>
               <td><?= getTimeString($currRecipe["recipe_ready_in_time"]); ?></td>
@@ -51,7 +53,7 @@ for ($i=0; $i < $numRows; $i++): ?>
   <ul class="pagination">
     <?php if ($page == 1): ?>
       <li class="disabled">
-    <?php else: ?> 
+    <?php else: ?>
       <li>
     <?php endif ?>
     <a href="?page=<?= $page - 1 ?>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
@@ -63,3 +65,4 @@ for ($i=0; $i < $numRows; $i++): ?>
   </ul>
   </div>
 </nav>
+</div>

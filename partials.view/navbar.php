@@ -39,7 +39,21 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signInUp" id="signInUpBtn">Sign in / Sign Up</button>
+        <?php if(is_logged_in()): ?>
+        <?php if(is_admin()): ?>
+        <a href="../dasboard">
+            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="dashboardBtn" id="dashboardBtn">Dashboard</button>
+        </a>
+        <?php endif; ?>
+        <a href="../profile">
+            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="profileBtn" id="profileBtn">Profile</button>
+        </a>
+        <a href="../logout.php">
+            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="logoutBtn" id="logoutBtn">Logout</button>
+        </a>
+        <?php else: ?>
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signInUp" id="signInUpBtn">Sign in / Sign Up</button>
+        <?php endif; ?>
         <!-- <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

@@ -1,6 +1,4 @@
 <?php
-
-
 function arrayToString($arr, $delim = ","){
     if(count($arr) == 0) return NULL;
 
@@ -12,3 +10,4 @@ function arrayToString($arr, $delim = ","){
     rtrim($str, $delim);
     return $str;
 }
+
