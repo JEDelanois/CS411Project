@@ -148,8 +148,15 @@ class DatabaseConnection {
             ]);
     }
 
-    public function getAllIngredients(){
+    public function getIngredients($ingredientID = NULL, $limit = 30, $page = 1){
+        if( (isset($page) && $page < 1) || (isset($limit) && $limit < 0))
+            return NULL;
         $sqlQuery = "SELECT * FROM Ingredients WHERE 1";
+        if($ingredientID){
+            $sqlQuery .= " WHERE ingredient_id = $ingredientID";
+        } else if($limit) {
+            $sqlQuery .= " LIMIT " . ($page - 1) * $limit . ", " . $limit;
+        }
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute();
         return $STH->fetchAll();

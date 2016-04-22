@@ -13,12 +13,28 @@
 			$nutritionLog = json_decode($content, true)["results"];
 
 			$currentDate = NULL;
+			$totalCalories = 0; $totalFat = 0; $totalCarbs = 0; $totalProtein = 0; $totalChol = 0; 
+			$totalSodium = 0; $totalSugar = 0; 
 			foreach($nutritionLog as $nl){
 				if($currentDate == NULL || $currentDate != $nl["log_date"]): 
-					if($currentDate != NULL){
-						echo '</tbody>';
-						echo '</table>';
-					}
+					if($currentDate != NULL): ?>
+						<tr>
+						<th>Total</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th><?= $totalCalories ?></th>
+						<th><?= $totalFat ?></th>
+						<th><?= $totalCarbs ?></th>
+						<th><?= $totalProtein ?></th>
+						<th><?= $totalChol ?></th>
+						<th><?= $totalSodium ?></th>
+						<th><?= $totalSugar ?></th>
+						<th>
+						</tr>
+						</tbody>
+						</table>
+					<?php endif;
 					$currentDate = $nl["log_date"]; ?>
 					<h3><?= date("F j, Y, g:i a", strtotime($currentDate)) ?></h3>
 					<table class="table">
@@ -28,8 +44,13 @@
 					<th>Recipe</th>
 					<th>Ingredient</th>
 					<th>Ingredient Amount</th>
-					<th>Calories</th>
-					<th>Fat</th>
+					<th>Calories (kcal)</th>
+					<th>Fat (g)</th>
+					<th>Carbs (g)</th>
+					<th>Protein (g)</th>
+					<th>Cholesterol (mg)</th>
+					<th>Sodium (mg)</th>
+					<th>Sugar (g)</th>
 					<th>
 					</tr>
 					</thead>
@@ -38,29 +59,112 @@
 				<tr>
 					<td><?= isset($nl["log_time_of_the_day"]) ? $nl["log_time_of_the_day"] : "N/A" ?></td> 
 					<td>
-					<?php if(isset($nl["recipe_id"])): ?>
-						<a href="<?= '../recipe/?id=' . $nl["recipe_id"]?>"><?= getRecipeNameFromAPI($nl["recipe_id"]) ?></a>
+					<?php if(isset($nl["recipe_id"])):
+						$recipe = getRecipeFromAPI($nl["recipe_id"]); 
+						?>
+						<a href="<?= '../recipe/?id=' . $nl["recipe_id"]?>"><?= $recipe["recipe_name"] ?></a>
 					<?php else: ?>
 						N/A
 					<?php endif; ?>
 					</td>
 					<td>
 					<?php if(isset($nl["ingredient_id"])): ?>
-						<a href="<?= '../ingredient/?id=' . $nl["ingredient_id"]?>"><?= getIngredientNameFromAPI($nl["ingredient_id"]) ?></a>
+						<a href="<?= '../ingredient/?id=' . $nl["ingredient_id"]?>"><?= getIngredientFromAPI($nl["ingredient_id"]) ?></a>
 					<?php else: ?>
 						N/A
 					<?php endif; ?>
 					</td>
 					<td>
 					<?php if(isset($nl["ingredient_amount"])): ?>
-						<?= getIngredientNameFromAPI($nl["ingredient_amount"]) ?>
+						<?= getIngredientFromAPI($nl["ingredient_amount"]) ?>
 					<?php else: ?>
 						N/A
 					<?php endif; ?>
 					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_calories"];
+						$totalCalories += floatval($recipe["recipe_calories"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_fat"];
+						$totalFat += floatval($recipe["recipe_fat"]);
+					} else if(isset($ingredient)){
+						echo $ingredient["ingredient_fat"];
+						$totalFat += floatval($ingredient["ingredient_fat"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_carbs"];
+						$totalCarbs += floatval($recipe["recipe_carbs"]);
+					} else if(isset($ingredient)){
+						echo $ingredient["ingredient_carbs"];
+						$totalCarbs += floatval($ingredient["ingredient_carbs"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_protein"];
+						$totalProtein += floatval($recipe["recipe_protein"]);
+					} else if(isset($ingredient)){
+						echo $ingredient["ingredient_protein"];
+						$totalProtein += floatval($ingredient["ingredient_protien"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_cholesterol"];
+						$totalChol += floatval($recipe["recipe_cholesterol"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php if(isset($recipe)){
+						echo $recipe["recipe_sodium"];
+						$totalSodium += floatval($recipe["recipe_sodium"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
+					<td>
+					<?php 
+					if(isset($ingredient)){
+						echo $ingredient["ingredient_sugar"];
+						$totalSugar += floatval($ingredient["ingredient_sugar"]);
+					} else
+						echo 'N/A';
+					?>
+					</td>
 				</tr>
 			<?php } ?>
-
+			<tr>
+			<th>Total</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th><?= $totalCalories ?></th>
+			<th><?= $totalFat ?></th>
+			<th><?= $totalCarbs ?></th>
+			<th><?= $totalProtein ?></th>
+			<th><?= $totalChol ?></th>
+			<th><?= $totalSodium ?></th>
+			<th><?= $totalSugar ?></th>
+			<th>
+			</tr>
+			</tbody>
+			</table>
 		<?php else: ?>
 		<h2>You are not logged In</h2>
 		<script type="text/javascript">
