@@ -116,7 +116,7 @@
 						echo $recipe["recipe_protein"];
 						$totalProtein += floatval($recipe["recipe_protein"]);
 					} else if(isset($ingredient)){
-						echo $ingredient["ingredient_protein"];
+						echo $ingredient["ingredient_protien"];
 						$totalProtein += floatval($ingredient["ingredient_protien"]);
 					} else
 						echo 'N/A';
