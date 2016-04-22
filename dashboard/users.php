@@ -1,13 +1,12 @@
-
+<?php
+// require '../user_session.php';
+require '../partials.view/header.view.php';
+if(!$currentUser || $currentUser["user_role"] != "administrator")
+    header("Location: ../404.php");
+?>
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-<?php 
-require '../user_session.php';
-if(!$currentUser || $currentUser->user_role != "administrator")
-	header("Location: ../404.php");
-require '../dbconfig.php';
-require '../classes/Database.php'; ?>
 <div id="dashboard">
-<table class="pure-table">
+<table class="table">
 <tbody>
 <tr>
 <td>ID</td>
@@ -46,15 +45,15 @@ echo "<td>$i->user_email</td>";
 echo "<td>$i->user_last_logged_in</td>";
 ?>
 	<td>
-		<form method='get' action='forms/editUser.form.php'>
-			<input hidden="true" value="<?php echo $i->user_id; ?>" name="user_id">
-			<input type='submit' value='Edit'>
+        <form method='get' action="../profile/">
+        <input hidden="true" value="<?= $i->user_id ?>" name="user_id">
+			<input type='submit' class="btn btn-default" value='Edit'>
 		</form>
 	</td>
 	<td>
 		<form method='get' action='inc/deleteUserProcess.php'>
 			<input hidden="true" value="<?php echo $i->user_id; ?>" name="user_id">
-			<input type='submit' value='Delete'>
+			<input type='submit' value='Delete' class="btn btn-default">
 		</form>
 	</td>
 </tr>
