@@ -70,7 +70,7 @@ class DatabaseConnection {
     }
 
     public function getUserFromEmail($email){
-        $sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_weight`, `user_height`, `user_gender`, `user_activity_type`, `user_profile_image`, `user_last_logged_in`, `user_registered` FROM `Users` WHERE user_email = :email";
+        $sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_weight`, `user_height`, `user_gender`, `user_activity_type`, `user_profile_image`, `user_last_logged_in`, `user_registered`, `user_targetweight` FROM `Users` WHERE user_email = :email";
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute([
             ':email'	=>	$email
@@ -80,7 +80,7 @@ class DatabaseConnection {
     }
 
     public function getUserFromID($id){
-        $sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_weight`, `user_height`, `user_gender`, `user_activity_type`, `user_profile_image`, `user_last_logged_in`, `user_registered` FROM `Users` WHERE user_id = :id";
+        $sqlQuery = "SELECT `user_id`, `user_role`, `user_firstname`, `user_lastname`, `user_email`, `user_dob`, `user_weight`, `user_height`, `user_gender`, `user_activity_type`, `user_profile_image`, `user_last_logged_in`, `user_registered`, `user_targetweight` FROM `Users` WHERE user_id = :id";
         $STH = $this->_db->prepare($sqlQuery);
         $STH->execute([
             ':id'	=>	$id
@@ -98,7 +98,7 @@ class DatabaseConnection {
     }
 
     public function changeUserData($userInfo, $changePassword = false){
-        $sqlQuery = "UPDATE `Users` SET `user_role`= :role,`user_firstname`= :firstName,`user_lastname`= :lastName,`user_email`= :emailAddress, user_dob = :user_dob, user_weight = :user_weight, user_height = :user_height, user_gender = :user_gender, user_activity_type = :user_activity_type, user_profile_image = :user_profile_image";
+        $sqlQuery = "UPDATE `Users` SET `user_role`= :role,`user_firstname`= :firstName,`user_lastname`= :lastName,`user_email`= :emailAddress, user_dob = :user_dob, user_weight = :user_weight, user_targetweight = :user_targetweight, user_height = :user_height, user_gender = :user_gender, user_activity_type = :user_activity_type, user_profile_image = :user_profile_image";
         if($changePassword)
             $sqlQuery .= " ,`user_password`= :password";
         $sqlQuery .= " WHERE user_id = :user_id";
@@ -113,6 +113,7 @@ class DatabaseConnection {
                 ':user_id'				=> $userInfo["user_id"],
                 ':user_dob'             => $userInfo["user_dob"],
                 ':user_weight'          => $userInfo["user_weight"],
+                ':user_targetweight'    => $userInfo["user_targetweight"],
                 ':user_height'          => $userInfo["user_height"],
                 ':user_gender'          => $userInfo["user_gender"],
                 'user_activity_type'    => $userInfo["user_activity_type"],

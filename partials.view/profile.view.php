@@ -67,6 +67,16 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
+			    <label for="targetWeightTextField" class="col-sm-2 control-label">Target Weight</label>
+			    <div class="col-sm-10">
+				    <div class="input-group">
+				      <input type="text" class="form-control" id="targetWeightTextField" placeholder="Target Weight" 
+				      value="<?= $currentUser ? $currentUser["user_targetweight"] : '' ?>" aria-describedby="weightUnit">
+				      <span class="input-group-addon" id="weightUnit">lbs</span>
+				    </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
 			    <label for="heightTextField" class="col-sm-2 control-label">Height</label>
 			    <div class="col-sm-10 form-inline">
 			    	<?php 
