@@ -21,7 +21,14 @@ function getRecipeFromAPI($recipeID){
 	$url = API_URL . "getRecipe.php?recipe_id=$recipeID";
 	$content = file_get_contents($url);
 	$recipe = json_decode($content, true);
-	// $recipe["results"][0];
+	$recipe = $recipe["results"][0];
+	return $recipe;
+}
+
+function getIngredientFromAPI($ingredientID){
+	$url = API_URL . "ingredients.php?id=$recipeID";
+	$content = file_get_contents($url);
+	$recipe = json_decode($content, true);
 	$recipe = $recipe["results"][0];
 	return $recipe;
 }
