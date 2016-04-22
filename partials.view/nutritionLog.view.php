@@ -1,4 +1,3 @@
-<?php require '../functions.php'; ?>
 <div id="profilePage" class="panel panel-default center-block" style="width: 90%">
   <div class="panel-body">
 		<?php if (is_logged_in()): ?>
