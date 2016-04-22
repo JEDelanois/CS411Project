@@ -16,3 +16,12 @@ function getDirectoryFromURL($requestUrl){
 	$folder_name = $arr[count($arr) - 2];
 	return $folder_name;
 }
+
+function getRecipeNameFromAPI($recipeID){
+	$url = API_URL . "getRecipe.php?recipe_id=$recipeID";
+	$content = file_get_contents($url);
+	$recipe = json_decode($content, true);
+	// $recipe["results"][0];
+	$recipe = $recipe["results"][0];
+	return $recipe["recipe_name"];
+}
