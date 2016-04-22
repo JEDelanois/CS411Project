@@ -118,9 +118,52 @@ public function get_macro_day_total($id, $date)
         ':date' =>  $date,
         ':tomorrow' => $tomorrow,
         ]);`
+    $ingredientInfo=$STH->fetchALL();
+   ///not finished 
+    
 
 
+}
 
+
+public suggest_rec_by_macros($id, $date)
+{
+    $macros=get_target_macros($id);
+    $consumed=get_macro_day_total($id, $date);
+    $remain=array();
+    array_push($remain, $macros[0]-$consumed[0]);
+    array_push($remain, $macros[1]-$consumed[1]);
+    array_push($remain, $macros[2]-$consumed[2]);
+
+    return suggest_rec_by_value(1, remain[0], 1, remain[1], 2, remain[2]);
+}
+
+
+public suggest_rec_by_value($min_p, $max_p, $min_f, $max_f, $min_c, $max_c)
+{ 
+    $db= new DatabaseConnection();
+       
+    $ingSQL="SELECT recipe_id FROM Recipes WHERE (recipe_fat <= :max_f) AND (recipe_carbs <= :max_c) AND (recipe_protein <= :max_p) AND (recipe_fat  >= :min_f) AND (recipe_carbs >= min_c ) AND (recipe_protein >= :min_p);"
+
+
+    $STH=$this->db->prepare($ingSQL);
+    $STH->execute([
+        ':max_f'   =>  $max_f,
+        ':max_c' =>  $max_c,
+        ':max_p' => $max_p,
+        ':min_f' => $min_f,
+        ':min_c' => $min_c,
+        ':min_p' => $min_p,
+        ]);
+    $results=$STH->fetchALL();
+
+    if(results->rowCount==0)
+        return None;
+    
+    $recRow=results[rand(0, count($result)-1];
+    return $recRow[0];
+
+ 
 }
 
 
