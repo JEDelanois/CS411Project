@@ -1,8 +1,11 @@
 <?php
 // require '../user_session.php';
 require '../partials.view/header.view.php';
-if(!$currentUser || $currentUser["user_role"] != "administrator")
-    header("Location: ../404.php");
+if(!$currentUser || $currentUser["user_role"] != "administrator"){
+    // header("Location: ../404.php");
+    echo '<h1>Access Denied</h1>';
+    die();
+}
 ?>
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 <div id="dashboard">
