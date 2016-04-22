@@ -26,9 +26,13 @@ function getRecipeFromAPI($recipeID){
 }
 
 function getIngredientFromAPI($ingredientID){
-	$url = API_URL . "ingredients.php?id=$recipeID";
+	$url = API_URL . "ingredients.php?id=$ingredientID";
+	echo $url;
 	$content = file_get_contents($url);
-	$recipe = json_decode($content, true);
-	$recipe = $recipe["results"][0];
-	return $recipe;
+	$ingr = json_decode($content, true);
+	echo '<pre>';
+	print_r($ingr);
+	echo '</pre>';
+	$ingr = $ingr["results"][0];
+	return $ingr;
 }

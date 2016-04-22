@@ -151,7 +151,7 @@ class DatabaseConnection {
     public function getIngredients($ingredientID = NULL, $limit = 30, $page = 1){
         if( (isset($page) && $page < 1) || (isset($limit) && $limit < 0))
             return NULL;
-        $sqlQuery = "SELECT * FROM Ingredients WHERE 1";
+        $sqlQuery = "SELECT * FROM Ingredients";
         if($ingredientID){
             $sqlQuery .= " WHERE ingredient_id = $ingredientID";
         } else if($limit) {

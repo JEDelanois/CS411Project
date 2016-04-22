@@ -36,7 +36,7 @@
 						</table>
 					<?php endif;
 					$currentDate = $nl["log_date"]; ?>
-					<h3><?= date("F j, Y, g:i a", strtotime($currentDate)) ?></h3>
+					<h3><?= date("F j, Y", strtotime($currentDate)) ?></h3>
 					<table class="table">
 					<thead>
 					<tr>

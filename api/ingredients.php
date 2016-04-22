@@ -7,8 +7,8 @@ $db = new DatabaseConnection();
 
 $ingredients = [];
 
-if(isset($_GET["id"]))
-	$id = htmlentities($_GET["id"]);
+if(isset($_GET["ingredient_id"]))
+	$id = htmlentities($_GET["ingredient_id"]);
 else
 	$id = NULL;
 
