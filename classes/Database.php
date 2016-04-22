@@ -103,6 +103,8 @@ class DatabaseConnection {
         if($changePassword)
             $sqlQuery .= " ,`user_password`= :password";
         $sqlQuery .= " WHERE user_id = :user_id";
+        // echo $sqlQuery;
+        // die();
         $STH = $this->_db->prepare($sqlQuery);
         if($changePassword){
             $STH->execute([
@@ -129,6 +131,7 @@ class DatabaseConnection {
                 ':user_id'				=> $userInfo["user_id"],
                 ':user_dob'             => $userInfo["user_dob"],
                 ':user_weight'          => $userInfo["user_weight"],
+                ':user_targetweight'    => $userInfo["user_targetweight"],
                 ':user_height'          => $userInfo["user_height"],
                 ':user_gender'          => $userInfo["user_gender"],
                 'user_activity_type'    => $userInfo["user_activity_type"],

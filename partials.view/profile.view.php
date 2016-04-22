@@ -90,12 +90,12 @@
 			    		}
 			    	?>
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="heightTextField" name="heightTextField" placeholder="" 
+				      <input type="text" class="form-control" id="heightTextField" name="heightTextFieldFT" placeholder="" 
 				      value="<?= $height_ft ?>" aria-describedby="heightUnitFt">
 				      <span class="input-group-addon" id="heightUnitFt">ft</span>
 				    </div>
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="heightTextField" name="heightTextField" placeholder="" 
+				      <input type="text" class="form-control" id="heightTextField" name="heightTextFieldIN" placeholder="" 
 				      value="<?= $height_in ?>" aria-describedby="heightUnitFt">
 				      <span class="input-group-addon" id="heightUnitFt">in</span>
 				    </div>
