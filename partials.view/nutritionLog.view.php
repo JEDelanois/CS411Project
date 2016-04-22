@@ -21,8 +21,6 @@
 						<tr>
 						<th>Total</th>
 						<th></th>
-						<th></th>
-						<th></th>
 						<th><?= $totalCalories ?></th>
 						<th><?= $totalFat ?></th>
 						<th><?= $totalCarbs ?></th>
@@ -40,10 +38,10 @@
 					<table class="table">
 					<thead>
 					<tr>
-					<th>Time of the Day</th>
+					<!-- <th>Time of the Day</th> -->
 					<th>Recipe</th>
 					<th>Ingredient</th>
-					<th>Ingredient Amount</th>
+					<!-- <th>Ingredient Amount</th> -->
 					<th>Calories (kcal)</th>
 					<th>Fat (g)</th>
 					<th>Carbs (g)</th>
@@ -56,31 +54,27 @@
 					<tbody>
 				<?php endif; ?>
 				<tr>
-					<td><?= isset($nl["log_time_of_the_day"]) ? $nl["log_time_of_the_day"] : "N/A" ?></td> 
+					<?php /*<td><?= isset($nl["log_time_of_the_day"]) ? $nl["log_time_of_the_day"] : "N/A" ?></td> */ ?>
 					<td>
 					<?php if(isset($nl["recipe_id"])):
 						$recipe = getRecipeFromAPI($nl["recipe_id"]); 
 						?>
 						<a href="<?= '../recipe/?id=' . $nl["recipe_id"]?>"><?= $recipe["recipe_name"] ?></a>
-					<?php else: ?>
-						N/A
 					<?php endif; ?>
 					</td>
 					<td>
 					<?php if(isset($nl["ingredient_id"])):
 						$ingredient = getIngredientFromAPI($nl["ingredient_id"]);
 						echo $ingredient["ingredient_name"];
-					else:
-						echo 'N/A';
 					endif; ?>
 					</td>
-					<td>
+					<?php /*<td>
 					<?php if(isset($nl["ingredient_amount"])): ?>
 						<?= $ingredient["ingredient_amount"] ?>
 					<?php else: ?>
 						N/A
 					<?php endif; ?>
-					</td>
+					</td>*/ ?>
 					<td>
 					<?php if(isset($recipe)){
 						echo $recipe["recipe_calories"];
