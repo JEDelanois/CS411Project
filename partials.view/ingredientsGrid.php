@@ -19,7 +19,7 @@
   <div class="panel-body">
   	<h1 style="text-align: center">Ingredients</h1><br>
   	<table class="table">
-  	<thead> 
+  	<thead>
   	<th>Name</th>
   	<th>Serving Size</th>
   	<th>Protein</th>
@@ -32,7 +32,7 @@
   	</thead>
   	<tbody>
   		<?php foreach ($array as $ing): ?>
-  			<tr> 
+  			<tr>
   				<td><?= $ing["ingredient_name"]; ?></td>
   				<td><?= $ing['ingredient_serving_size'] ?></td>
   				<td><?= $ing["ingredient_protien"] ?></td>

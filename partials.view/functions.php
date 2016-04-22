@@ -1,4 +1,4 @@
-<?php 
+<?php
 function getTimeString($time){
 	$retString = "";
 	for($i = 0; $i < strlen($time); $i++){
@@ -13,6 +13,8 @@ function getTimeString($time){
 function getDirectoryFromURL($requestUrl){
 	// $link = $_SERVER["REQUEST_URI"];
 	$arr = explode("/", $requestUrl);
+    if(!isset($arr[count($arr) - 2]))
+        return "";
 	$folder_name = $arr[count($arr) - 2];
 	return $folder_name;
 }

@@ -34,9 +34,9 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" method="get" action="">
     <div class="input-group">
-      <input type="text" class="form-control" aria-label="..." name="s">
+    <input type="text" class="form-control" aria-label="..." name="s" value="<?= isset($_GET["s"]) ? htmlentities($_GET["s"]) : ''?>">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></button>
+        <button type="button" id="searchTypeBtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></button>
         <ul id="searchTypeDropdown" class="dropdown-menu dropdown-menu-right">
           <li><a href="#" onClick="changeSearchType('recipes')">Recipes</a></li>
           <li><a href="#" onClick="changeSearchType('ingredients')">Ingredients</a></li>
@@ -110,6 +110,10 @@ if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_
 
     function changeSearchType(newValue){
         $("input#searchSubmit").prop('value', newValue);
+        if(newValue == "recipes")
+            $("button#searchTypeBtn").text("Recipes");
+        else if(newValue = "ingredients")
+            $("button#searchTypeBtn").text("Ingredients");
     }
 
     </script>

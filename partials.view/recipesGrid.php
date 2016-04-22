@@ -25,6 +25,7 @@
 <?php for ($i=0; $i < $numRows; $i++): ?>
 <div class="row">
 	<?php for($j = 0; $j < 3; $j++):
+    if(!isset($array[$index])) continue;
 		$currRecipe = $array[$index++];
 		?>
   <div class="col-sm-6 col-md-4">
