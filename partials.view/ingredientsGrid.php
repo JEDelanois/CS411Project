@@ -70,15 +70,13 @@
 </nav>
   </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
 	function addToNutritionLog(user_id, ingredient_id){
 		var APIURL = '<?= API_URL ?>';
 		var utc = new Date().toJSON().slice(0,10);
 		var url = APIURL + "addNutritionLog.php?user_id=" + user_id + "&&ingredient_id=" + ingredient_id + "&&date=" + utc;
 		jQuery.get(url, function(){
-			alert('Ingredient added to the log');
+			alert('Ingredient is added to the log');
 		});
 	}
-
 </script>

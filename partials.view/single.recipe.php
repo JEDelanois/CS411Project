@@ -93,6 +93,14 @@ $currRecipe = $array["results"][0];
 				        <label>Sodium: </label> <?= $currRecipe["recipe_sodium"]; ?> mg
 			        </div>
 		        </div>
+		        <?php if (is_logged_in()): ?>
+		       <hr>
+  				<td>
+  					<a onClick="addToNutritionLog(<?= $currentUser["user_id"] ?>, <?= $recipe_id ?>)" >
+  						<button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>   Add to Nutrition Log</button>
+  					</a>
+  				</td>
+			<?php endif ?>
 		    </div>
 		    <div class="panel panel-default">
 				<div class="panel-heading">
@@ -114,3 +122,14 @@ $currRecipe = $array["results"][0];
 	</div>
 </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+	function addToNutritionLog(user_id, recipe_id){
+		var APIURL = '<?= API_URL ?>';
+		var utc = new Date().toJSON().slice(0,10);
+		var url = APIURL + "addNutritionLog.php?user_id=" + user_id + "&&recipe_id=" + recipe_id + "&&date=" + utc;
+		jQuery.get(url, function(){
+			alert('Recipe is added to the log');
+		});
+	}
+</script>
