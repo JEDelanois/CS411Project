@@ -98,6 +98,7 @@ class DatabaseConnection {
     }
 
     public function changeUserData($userInfo, $changePassword = false){
+        // print_r($userInfo);
         $sqlQuery = "UPDATE `Users` SET `user_role`= :role,`user_firstname`= :firstName,`user_lastname`= :lastName,`user_email`= :emailAddress, user_dob = :user_dob, user_weight = :user_weight, user_targetweight = :user_targetweight, user_height = :user_height, user_gender = :user_gender, user_activity_type = :user_activity_type, user_profile_image = :user_profile_image";
         if($changePassword)
             $sqlQuery .= " ,`user_password`= :password";

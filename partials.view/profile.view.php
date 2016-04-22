@@ -1,33 +1,33 @@
 <div id="profilePage" class="panel panel-default center-block" style="width: 80%">
   <div class="panel-body">
 		<?php if (is_logged_in()): ?>
-			<h1>Hello, <?= $currentUser["user_firstname"]; ?></h1>
-			<form class="form-horizontal">
+			<h1>Hello, <?= $currentUser["user_firstname"]; ?></h1><br>
+			<form class="form-horizontal" method="post" action="../inc/editUserProcess.php">
 			  <div class="form-group">
 			    <label for="firstNameTextField" class="col-sm-2 control-label">First Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="firstNameTextField" placeholder="First Name"
+			      <input type="text" class="form-control" name="firstNameTextField" id="firstNameTextField" placeholder="First Name"
 			      value="<?= $currentUser ? $currentUser["user_firstname"] : '' ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="lastNameTextField" class="col-sm-2 control-label">Last Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="lastNameTextField" placeholder="Last Name"
+			      <input type="text" class="form-control" name="lastNameTextField" id="lastNameTextField" name="lastNameTextField" placeholder="Last Name"
 			      value="<?= $currentUser ? $currentUser["user_lastname"] : ''?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="emailTextField" class="col-sm-2 control-label">Email Address</label>
 			    <div class="col-sm-10">
-			      <input type="email" class="form-control" id="emailTextField" placeholder="Email"
+			      <input type="email" class="form-control" id="emailTextField" name="emailTextField" placeholder="Email"
 			      value="<?= $currentUser ? $currentUser["user_email"] : '' ?>">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="passwordTextField" class="col-sm-2 control-label">Password</label>
 			    <div class="col-sm-10">
-			      <input type="password" class="form-control" id="passwordTextField" placeholder="">
+			      <input type="password" class="form-control" id="passwordTextField" name="passwordTextField" placeholder="">
 			    </div>
 			  </div>
 			  <?php if ($currentUser["user_role"] == "administrator"): ?>
@@ -52,7 +52,7 @@
 						$dob = "";
 					}
 			    ?>
-			      <input type="date" class="form-control" id="dobTextField" placeholder=""
+			      <input type="date" class="form-control" id="dobTextField" name="dobTextField" placeholder=""
 			      value="<?= $dob ?>">
 			    </div>
 			  </div>
@@ -60,7 +60,7 @@
 			    <label for="weightTextField" class="col-sm-2 control-label">Weight</label>
 			    <div class="col-sm-10">
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="weightTextField" placeholder="Weight" 
+				      <input type="text" class="form-control" id="weightTextField" name="weightTextField" placeholder="Weight" 
 				      value="<?= $currentUser ? $currentUser["user_weight"] : '' ?>" aria-describedby="weightUnit">
 				      <span class="input-group-addon" id="weightUnit">lbs</span>
 				    </div>
@@ -70,7 +70,7 @@
 			    <label for="targetWeightTextField" class="col-sm-2 control-label">Target Weight</label>
 			    <div class="col-sm-10">
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="targetWeightTextField" placeholder="Target Weight" 
+				      <input type="text" class="form-control" id="targetWeightTextField" name="targetWeightTextField" placeholder="Target Weight" 
 				      value="<?= $currentUser ? $currentUser["user_targetweight"] : '' ?>" aria-describedby="weightUnit">
 				      <span class="input-group-addon" id="weightUnit">lbs</span>
 				    </div>
@@ -90,12 +90,12 @@
 			    		}
 			    	?>
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="heightTextField" placeholder="" 
+				      <input type="text" class="form-control" id="heightTextField" name="heightTextField" placeholder="" 
 				      value="<?= $height_ft ?>" aria-describedby="heightUnitFt">
 				      <span class="input-group-addon" id="heightUnitFt">ft</span>
 				    </div>
 				    <div class="input-group">
-				      <input type="text" class="form-control" id="heightTextField" placeholder="" 
+				      <input type="text" class="form-control" id="heightTextField" name="heightTextField" placeholder="" 
 				      value="<?= $height_in ?>" aria-describedby="heightUnitFt">
 				      <span class="input-group-addon" id="heightUnitFt">in</span>
 				    </div>
