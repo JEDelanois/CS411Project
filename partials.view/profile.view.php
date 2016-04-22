@@ -8,9 +8,17 @@
             $_currentUser = json_decode($content, true)["results"];
         } else
             $_currentUser = $currentUser;
+if($_currentUser["user_height"] == NULL || $_currentUser["user_height"] == 0)
+    $bodyFat = NULL;
+else
+    $bodyFat = get_body_comp($_currentUser["user_id"]);
 
 ?>
-			<h1>Hello, <?= $_currentUser["user_firstname"]; ?></h1><br>
+            <div class="pull-right well well-sm">
+            <p>BMI: <?= isset($bodyFat) ? $bodyFat[0] : 'N/A' ?>    |
+            BMF: <?= isset($bodyFat) ? $bodyFat[1] : 'N/A' ?></p>
+            </div>
+			<h1>Hello, <?= $_currentUser["user_firstname"]; ?></h1>
 			<form class="form-horizontal" method="post" action="../inc/editUserProcess.php">
 			  <div class="form-group">
 			    <label for="firstNameTextField" class="col-sm-2 control-label">First Name</label>
@@ -39,7 +47,7 @@
 			      <input type="password" class="form-control" id="passwordTextField" name="passwordTextField" placeholder="">
 			    </div>
 			  </div>
-			  <?php if ($_currentUser["user_role"] == "administrator"): ?>
+			  <?php if ($currentUser["user_role"] == "administrator"): ?>
 			  <div class="form-group">
 			    <label for="userRoleSelection" class="col-sm-2 control-label">User Role</label>
 			    <div class="col-sm-10">
@@ -134,3 +142,10 @@
 		<?php endif ?>
   </div>
 </div>
+
+
+<?php if(isset($_GET["login_registration_error"])): ?>
+		<script type="text/javascript">
+		    $("button#signInUpBtn").trigger("click");
+		</script>
+<?php endif; ?>

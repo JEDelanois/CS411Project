@@ -549,7 +549,8 @@ function get_target_macros($id)
 function get_body_comp($id)
 {
 
-    $user=UserInfo($id);
+    $user= new UserInfo($id);
+
     $g=0;
     if($user->gender=="male")
         $g=1;
@@ -557,7 +558,7 @@ function get_body_comp($id)
     $bmi=($user->weight/($user->height*$user->height))*703;
     $bfp=(1.2 *$bmi)+(.24*$user->age)-(10.8*$g)-5.4;
 
-    return array($bmi, $bpf);
+    return array($bmi, $bfp);
 
 
 }
