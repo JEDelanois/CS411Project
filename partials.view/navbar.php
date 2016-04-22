@@ -109,6 +109,8 @@ if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_
 
     <script type="text/javascript">
 
+    var currentSearchType = '<?= htmlentities($_GET["searchType"]) ?>';
+
     function changeSearchType(newValue){
         $("input#searchSubmit").prop('value', newValue);
         if(newValue == "recipes")
@@ -117,4 +119,9 @@ if(isset($_GET["login_registration_error"]) && intval($_GET["login_registration_
             $("button#searchTypeBtn").text("Ingredients");
     }
 
+    if(currentSearchType == "ingredients")
+        changeSearchType("ingredients");
+
     </script>
+
+

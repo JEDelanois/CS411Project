@@ -5,10 +5,10 @@ require 'functions.php';
 if(isset($_GET["searchType"])){
     $folder_name = getDirectoryFromURL($_SERVER["REQUEST_URI"]);
     $searchType = htmlentities($_GET["searchType"]);
-    if($searchType == "ingredients" && $folder_name != "ingredients"){
-        header("Location: ../ingredients/?searchType=ingredients&&s=" . htmlentities($_GET["s"]));
-    } else if($folder_name != "recipes"){
+    if($searchType == "recipes" && $folder_name != "recipes"){
     header("Location: ../recipes/?searchType=recipes&&s=" . htmlentities($_GET["s"]));
+    } else if($searchType == "ingredients" && $folder_name != "ingredients"){
+        header("Location: ../ingredients/?searchType=ingredients&&s=" . htmlentities($_GET["s"]));
     }
 }
 
