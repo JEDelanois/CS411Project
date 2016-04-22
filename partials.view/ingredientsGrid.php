@@ -77,7 +77,7 @@
 		var utc = new Date().toJSON().slice(0,10);
 		var url = APIURL + "addNutritionLog.php?user_id" + user_id + "&&ingredient_id=" + ingredient_id + "&&date=" + utc;
 		jQuery.get(url, function(){
-			$.alert('Ingredient added to the log');
+			alert('Ingredient added to the log');
 		});
 	}
 
