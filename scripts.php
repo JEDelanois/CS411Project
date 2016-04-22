@@ -96,9 +96,10 @@ public function get_macro_day_total($id, $date)
     $db= new DatabaseConnection();
     $user=UserInfo($id);
     $date=$date->setTime(0, 0, 0);
-    $tommorow=$date.rep
+    $tomorrow=$date;
+    date_modify($tomorrow, '+1 day');
     //set tommorw= to the day after date. !!!!!!!!!!!!
-
+      
     $ingSQL="SELECT ingredient_id, ingredient_amount FROM NutritionLog WHERE (user_id = :id)";
     $ingSQL=$ingSQL."AND (log_date>= :date)";
     $ingSQL=$ingSQL."AND (log_date <:tomorrow)";
