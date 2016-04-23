@@ -1,4 +1,4 @@
-<?php 
+<?php
 require '../user_session.php';
 require '../dbconfig.php';
 require '../classes/Database.php';
