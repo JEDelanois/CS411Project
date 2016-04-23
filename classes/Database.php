@@ -497,7 +497,7 @@ class UserInfo {
         $db = new DatabaseConnection();
         $temp= $db->getUserFromID($id);
 
-        $this->age = strtotime($temp["user_dob"]) - strtotime(date('Y-m-d H:i:s'));
+        $this->age = strtotime($temp["user_dob"]) - date('Y-m-d H:i:s');
         $this->height=$temp["user_height"];
         $this->weight=$temp["user_weight"];
         $this->gender=$temp["user_gender"];

@@ -8,16 +8,16 @@
             $_currentUser = json_decode($content, true)["results"];
         } else
             $_currentUser = $currentUser;
-if($_currentUser["user_height"] == NULL || $_currentUser["user_height"] == 0)
+/*if($_currentUser["user_height"] == NULL || $_currentUser["user_height"] == 0)
     $bodyFat = NULL;
 else
-    $bodyFat = get_body_comp($_currentUser["user_id"]);
+    $bodyFat = get_body_comp($_currentUser["user_id"]);*/
 
 ?>
-            <div class="pull-right well well-sm">
+<?php /*            <div class="pull-right well well-sm">
             <p>BMI: <?= isset($bodyFat) ? $bodyFat[0] : 'N/A' ?>    |
             BMF: <?= isset($bodyFat) ? $bodyFat[1] : 'N/A' ?></p>
-            </div>
+            </div>*/?>
 			<h1>Hello, <?= $_currentUser["user_firstname"]; ?></h1>
 			<form class="form-horizontal" method="post" action="../inc/editUserProcess.php">
 			  <div class="form-group">
