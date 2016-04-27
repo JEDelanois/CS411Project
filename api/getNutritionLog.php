@@ -15,7 +15,7 @@ if(isset($_GET["user_id"])){
             if(!$db->getUserFromID($user_id))
                 $errors["user_id_error"] = "User does not exist";
             else {
-                $date = htmlentities($_GET["date"]);
+                $date = isset($_GET["date"]) ? htmlentities($_GET["date"]) : NULL;
                 $time_of_day = (isset($_GET["time_of_day"])) ? htmlentities($_GET["time_of_day"]) : NULL;
 
                 $ret = $db->getNutritionLogItem($user_id, $date, $time_of_day);

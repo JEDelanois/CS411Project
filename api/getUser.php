@@ -46,6 +46,11 @@ if(isset($_GET["id"]) || isset($_GET["email"])){
         }
     }
 
+    if(isset($user["user_dob"])){
+        $user["user_age"] = date('Y-m-d H:i:s') - date('Y-m-d H:i:s', strtotime($user["user_dob"]));
+    } else
+        $user["user_age"] = NULL;
+
     echo json_encode([
         'num_results'   =>  1,
         'results'       =>  $user,
